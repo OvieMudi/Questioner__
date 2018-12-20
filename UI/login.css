@@ -2,6 +2,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
   background: gray;
   margin: 0;
+  color: whitesmoke;
 }
 
 header {
@@ -28,7 +29,7 @@ main {
 }
 
 .form_container {
-  background: whitesmoke;
+  background: rgb(72, 72, 73);
   min-width: 340px;
   margin-top: 4rem;
   padding: 20px 40px 60px 40px;
