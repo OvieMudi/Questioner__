@@ -1,0 +1,5 @@
+@import "./usr_dashboard.css";
+
+.fa-plus-circle:before {
+  font-size: 1.5em;
+}

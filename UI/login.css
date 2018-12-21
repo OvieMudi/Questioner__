@@ -1,0 +1,79 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+  background: gray;
+  margin: 0;
+  color: whitesmoke;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: cornflowerblue;
+  font-size: 1em;
+  height: 8vh;
+}
+header .nav_homelink {
+  font-size: 1.5em;
+}
+header a {
+  padding: 0 2rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form_container {
+  background: rgb(72, 72, 73);
+  min-width: 340px;
+  margin-top: 4rem;
+  padding: 20px 40px 60px 40px;
+  border: 1px solid rgb(144, 197, 221);
+  box-sizing: border-box;
+}
+.form form {
+  display: flex;
+  flex-flow: column;
+}
+.form h1 {
+  text-align: center;
+  font-weight: 400;
+}
+.form input {
+  height: 40px;
+  width: 100%;
+  font-size: large;
+  font-weight: 200;
+  padding-left: 8px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  outline: none;
+  border: .5px solid rgb(144, 197, 221);
+  box-sizing: border-box;
+}
+.form a {
+  align-self: flex-end;
+  text-decoration: none;
+}
+.form button{
+  align-self: center;
+  width: 100%;
+  height: 30px;
+  background: steelblue;
+  border: transparent;
+  color: white;
+  font-weight: bold;
+  font-size: large;
+  margin-top: 10px;
+}
+
+.form button:hover{
+  background: rgb(25, 100, 161);
+  color: rgb(237, 241, 245);
+  cursor: pointer;
+}
