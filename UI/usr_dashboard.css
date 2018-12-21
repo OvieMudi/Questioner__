@@ -1,4 +1,8 @@
 /* general styles */
+html {
+  margin: 0;
+  padding: 0;
+}
 a {
   text-decoration: none;
   color: inherit;
@@ -31,7 +35,6 @@ body {
   background-color: aliceblue;
   margin: 0;
   padding: 0;
-  overflow: hidden;
 }
 
 /* header bar styles */
@@ -42,17 +45,22 @@ header {
   align-items: center;
   background-color: cornflowerblue;
   padding: 0 20px;
+
 }
-header div {
+header > div {
   display: flex;
   justify-content: space-between;
   list-style: none;
+  width: 30%;
+
 }
 header .header_homelink {
   font-size: 1.5em;
+
 }
 header li{
-  padding-right: 3em;
+  padding-right: 0;
+
 }
 
 /* navigation side-bar styles */
@@ -63,13 +71,15 @@ nav	{
   align-items: center;
   background-color: darkslategray;
   padding: 5px 15px;
+
 }
 nav .avatar_container {
   width: 70%;
-}
 
+}
 nav .nav_container {
   margin-top: 2em;
+
 }
 nav .nav_element {
   padding-top: 2em;
@@ -79,10 +89,9 @@ nav .nav_element {
 main {
   grid-area: content;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-evenly;
   padding: 1px 10px;
+
 }
 main .main_container {
   display: flex;
@@ -94,7 +103,6 @@ main .main_container {
   border-radius: 5px;
   height: calc(100vh - 50px);
   width: 80%;
-
 }
 main .meetups_hdr {
   display: flex;
@@ -117,7 +125,7 @@ main .meetup {
   border: 1px solid rgb(41, 31, 31);
   border-radius: 5px;
 }
-.meetup div {
+.meetup > div {
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
