@@ -4,7 +4,7 @@
   "description": "Crowd-source questions for a scheduled meetup",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --compilers js:@babel/register",
+    "test": "./node_modules/.bin/mocha --compilers js:@babel/register ./tests --recursive",
     "start": "nodemon --exec babel-node ./server/index.js",
     "build": "babel ./server -d dist",
     "serve": "SET NODE_ENV=dev && node ./dist/index.js"
