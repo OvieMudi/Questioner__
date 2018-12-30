@@ -1,0 +1,9 @@
+@import "./usr_dashboard.css";
+
+.fa-plus-circle:before {
+  font-size: 1.5em;
+}
+
+@media only screen and (max-width: 768px) {
+  
+}
