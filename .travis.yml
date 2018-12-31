@@ -4,6 +4,6 @@ node_js:
   - "lts/*"
   - "8"
 
-  after_success:
+after_success:
   - npm run test-coverage
   - npm run report-coverage
