@@ -2,8 +2,7 @@ language: node_js
 node_js:
   - "node"
   - "lts/*"
-  - "8.0.0*"
-  - "7"
+  - "8"
 
   after_success:
   - npm run test-coverage
