@@ -67,6 +67,12 @@ function userTests() {
         expect(res.body.data[0]).to.have.property('registered');
         expect(res.body.data[0]).to.have.property('isAdmin');
       }));
+    it('should not find user with invalid id', () => chai.request(app)
+      .get('/api/v1/users/_INVALID_ID_')
+      .then((res) => {
+        expect(res).to.have.status(404);
+        expect(res.body).to.have.property('message').eql('user does not exist');
+      }));
   });
   describe('Patch /api/v1/users', () => {
     it('should update a User record in db', () => chai.request(app)
@@ -92,6 +98,11 @@ function userTests() {
       .then((res) => {
         expect(res).to.have.status(200);
         expect(res.body.message).to.eql('user deleted');
+      }));
+    it('should not find deleted data', () => chai.request(app)
+      .delete(`/api/v1/users/${id}`)
+      .then((res) => {
+        expect(res).to.have.status(404);
       }));
   });
 }
