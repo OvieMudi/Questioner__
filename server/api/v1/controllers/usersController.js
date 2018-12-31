@@ -5,7 +5,6 @@ import Users from '../../../helpers/users';
 
 class UserController {
   constructor() {
-    this._currentUser = undefined;
     this.postUser = this.postUser.bind(this);
   }
 
@@ -15,7 +14,6 @@ class UserController {
   postUser(req, res) {
     try {
       const user = Users.createUser(req.body);
-      this._currentUser = user;
       return res.status(201).json({
         status: 201, data: [user],
       });
@@ -43,7 +41,7 @@ class UserController {
     const user = Users.getUser(req.params.id);
     if (!user) {
       return res.status(404).send({
-        status: 404, message: 'user not found',
+        status: 404, message: 'user does not exist',
       });
     }
     return res.status(200).send({
@@ -59,7 +57,7 @@ class UserController {
       const modifiedUser = Users.updateUser(req.params.id, req.body);
       if (!modifiedUser) {
         return res.status(404).json({
-          status: 404, message: 'user not found',
+          status: 404, message: 'user does not exit',
         });
       }
       return res.status(200).json({
