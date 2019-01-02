@@ -3,9 +3,13 @@ import db, { userModel } from '../../../db/v1/db';
 const userDB = db.users;
 
 class Users {
-  /* createUser
-    * create new user, add to db, return new user/exception
-  */
+  /**
+   * Create user in database using unique
+   * Assign a unique id to user
+   * @param {Object} data - http request body
+   * @returns {Object} - User object if success
+   * @throws {Error} - Error object if fail
+   */
   static createUser(data) {
     const user = { id: parseInt(Math.random() * 1000000, 10) };
     const propNames = Object.keys(userModel);
@@ -23,28 +27,34 @@ class Users {
     return Users.getUser(user.id);
   }
 
-  /* getUsers
-    * get all users, return all users/emptyArray
-  */
-
+  /**
+   * Get all users in database
+   * @returns {Array} - array of user objects
+   */
   static getUsers() {
     return userDB;
   }
 
-  /* getUser
-    * find a user, return found user/undefined
-  */
-
+  /**
+   * Get a User in database using a unique id
+   * Assign a unique id to user
+   * @param {String} idString - http request.params.id
+   * @returns {Object} - if User is found
+   * @returns {undefined} - if User is not found
+   */
   static getUser(idString) {
     const id = parseInt(idString, 10);
     const user = userDB.find(obj => obj.id === id);
     return user;
   }
 
-  /* updateUser
-    * find a user, update user, return updated user/undefined/exception
-  */
-
+  /**
+   * Update an existing user in database using a unique id
+   * @param {String} idString - http request.params.id
+   * @param {String} data - http request.body
+   * @returns {Object} - on success
+   * @throws {Error} - on failure
+   */
   static updateUser(idString, data) {
     const id = parseInt(idString, 10);
     const user = userDB.find(obj => obj.id === id);
@@ -59,10 +69,12 @@ class Users {
     return Users.getUser(id);
   }
 
-  /* deleteUser
-    * find a user, delete user, return found user/undefined
-  */
-
+  /**
+   * Delete an existing user in database using a unique id
+   * @param {String} idString - http request.params.id
+   * @returns {Object} - on success
+   * @returns {undefined} - on failure
+   */
   static deleteUser(idString) {
     const id = parseInt(idString, 10);
     const deleted = userDB.find((user, index) => {
