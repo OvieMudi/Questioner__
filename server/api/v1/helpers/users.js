@@ -1,4 +1,4 @@
-import db, { userModel } from '../db';
+import db, { userModel } from '../../../db/v1/db';
 
 const userDB = db.users;
 
@@ -37,7 +37,7 @@ class Users {
 
   static getUser(idString) {
     const id = parseInt(idString, 10);
-    const user = userDB.find(prop => prop.id === id);
+    const user = userDB.find(obj => obj.id === id);
     return user;
   }
 
@@ -47,16 +47,16 @@ class Users {
 
   static updateUser(idString, data) {
     const id = parseInt(idString, 10);
-    const user = userDB.find(prop => prop.id === id);
+    const user = userDB.find(obj => obj.id === id);
     const propNames = Object.keys(data);
     propNames.forEach((propName) => {
       if (!data[propName] || data[propName].length < 2) {
         // THROW EXCEPTION
-        throw new Error(`${propName} you entered is empty/invalid`);
+        throw new Error(`${propName} is empty/invalid`);
       }
-      user[propName] = data[propName];
+      if (propName !== 'id' || propName !== 'createdOn') user[propName] = data[propName];
     });
-    return user;
+    return Users.getUser(id);
   }
 
   /* deleteUser
@@ -66,9 +66,7 @@ class Users {
   static deleteUser(idString) {
     const id = parseInt(idString, 10);
     const deleted = userDB.find((user, index) => {
-      if (user.id === id) {
-        userDB.splice(index, 1);
-      }
+      if (user.id === id) userDB.splice(index, 1);
       return user.id === id;
     });
     return deleted;

@@ -1,4 +1,4 @@
-/*
+/**
   * Export entries that emulate model objects
   * Users
   * Meetups
@@ -24,7 +24,7 @@ export const meetupModel = {
   images: [String, String],
   topic: String,
   happeningOn: Date,
-  Tags: [String, String],
+  tags: [String, String],
 };
 
 export const question = {
@@ -49,7 +49,7 @@ export const rsvp = {
 */
 export default {
   users: [{
-    id: 1234567,
+    id: 12345678,
     firstname: 'Luke',
     lastname: 'Skywalker',
     othername: 'Korl',
@@ -58,5 +58,15 @@ export default {
     phoneNumber: '+1234567890',
     registered: new Date(),
     isAdmin: true,
+  }],
+
+  meetups: [{
+    id: 11223344,
+    createdOn: new Date(),
+    location: 'Felucia',
+    images: ['http://image1.jpg', 'http://image2.jpg'],
+    topic: 'Republic or Separatist',
+    happeningOn: new Date('4019/01/07-11:00'),
+    tags: ['republic', 'separatist'],
   }],
 };
