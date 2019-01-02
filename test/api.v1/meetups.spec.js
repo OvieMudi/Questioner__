@@ -12,6 +12,7 @@ const data = {
   happeningOn: '2019/01/07-11:00',
   tags: ['jedi', 'sith'],
 };
+
 let id;
 
 function meetupTests() {
@@ -53,7 +54,7 @@ function meetupTests() {
         expect(res).to.have.status(400);
         expect(res.body).to.have.property('error');
       }));
- 
+
     const invalidTopic = { ...data }; // copy data
     invalidTopic.topic = ['i'];
     it('should return error if location is missing', () => chai.request(server)
