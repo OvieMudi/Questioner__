@@ -127,8 +127,7 @@ class Meetups {
   static validateImages(imagesArray) {
     const error = Error('invalid images');
     if (!(imagesArray instanceof Array)) return [];
-    if (!(imagesArray.length === 0)) return imagesArray;
-    if (!imagesArray.every(image => image.length > 10)) throw error;
+    if (imagesArray.some(image => image.length < 11)) throw error;
     return imagesArray;
   }
 
