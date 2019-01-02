@@ -46,7 +46,7 @@ function meetupTests() {
 
     const invalidImages = { ...data }; // copy data
     invalidImages.images = ['invalid'];
-    it('should return error if location is missing', () => chai.request(server)
+    it('should return error if images are invalid', () => chai.request(server)
       .post('/api/v1/meetups')
       .type('form')
       .send(invalidImages)
@@ -57,7 +57,7 @@ function meetupTests() {
 
     const invalidTopic = { ...data }; // copy data
     invalidTopic.topic = ['i'];
-    it('should return error if location is missing', () => chai.request(server)
+    it('should return error if topic is missing/invalid', () => chai.request(server)
       .post('/api/v1/meetups')
       .type('form')
       .send(invalidTopic)
