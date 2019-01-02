@@ -3,6 +3,13 @@ import db, { meetupModel } from '../../../db/v1/db';
 const meetupsDB = db.meetups;
 
 class Meetups {
+  /**
+   * Create meetup in database
+   * Assign a unique id to meetup
+   * @param {Object} data - http request body
+   * @returns {Object} - Meetup object if success
+   * @throws {Error} - Error object if fail
+   */
   static createMeetup(data) {
     const meetup = {
       id: parseInt(Math.random() * 1000000, 10),
@@ -38,16 +45,34 @@ class Meetups {
     return Meetups.getMeetup(meetup.id);
   }
 
+  /**
+   * Get all meetup in database
+   * @returns {Array} - array of Meetup objects
+   */
   static getMeetups() {
     return meetupsDB;
   }
 
+  /**
+   * Get a Meetup object in database using a unique id
+   * Assign a unique id to Meetup
+   * @param {String} idString - http request.params.id
+   * @returns {Object} - if Meetup is found
+   * @returns {undefined} - if Meetup is not found
+   */
   static getMeetup(idString) {
     const id = parseInt(idString, 10);
     const meetup = meetupsDB.find(obj => obj.id === id);
     return meetup;
   }
 
+  /**
+   * Update an existing Meetup in database using a unique id
+   * @param {String} idString - http request.params.id
+   * @param {String} data - http request.body
+   * @returns {Object} - on success
+   * @throws {Error} - on failure
+   */
   static updateMeetup(idString, data) {
     const id = parseInt(idString, 10);
     const meetup = meetupsDB.find(obj => obj.id === id);
@@ -78,6 +103,12 @@ class Meetups {
     return Meetups.getMeetup(id);
   }
 
+  /**
+   * Delete an existing Meetup in database using a unique id
+   * @param {String} idString - http request.params.id
+   * @returns {Object} - on success
+   * @returns {undefined} - on failure
+   */
   static deleteMeetup(idString) {
     const id = parseInt(idString, 10);
     const deleted = meetupsDB.find((meetup, index) => {
@@ -87,6 +118,12 @@ class Meetups {
     return deleted;
   }
 
+  /**
+   * Check if Meetup images inputs are valid
+   * @param {Array} imagesArray - images input
+   * @returns {Array} - on success
+   * @throws {Error} - on failure
+   */
   static validateImages(imagesArray) {
     const error = Error('invalid images');
     if (!(imagesArray instanceof Array)) return [];
@@ -95,6 +132,12 @@ class Meetups {
     return imagesArray;
   }
 
+  /**
+   * Check if Meetup tags inputs are valid
+   * @param {Array} tagsArray - tags input
+   * @returns {Array} - on success
+   * @throws {Error} - on failure
+   */
   static validateTags(tagsArray) {
     const error = Error('invalid tags');
     if (!(tagsArray instanceof Array)) throw error;
@@ -102,6 +145,12 @@ class Meetups {
     return tagsArray;
   }
 
+  /**
+   * Set date property for meetup objects
+   * @param {String} imagesArray - images input
+   * @returns {Date} - on success
+   * @throws {Error} - on failure
+   */
   static setHappeningOn(dateString) {
     const error = new Error('invalid date string');
     if (typeof dateString !== 'string') throw error;

@@ -1,6 +1,12 @@
 import Meetups from '../helpers/meetups';
 
 class meetupsController {
+  /**
+   * Create new meetup in database
+   * @param {Object} req - server request
+   * @param {Object} res - server response
+   * @returns {Object} - custom server response with error/success
+   */
   static postMeetup(req, res) {
     try {
       const meetup = Meetups.createMeetup(req.body);
@@ -14,6 +20,12 @@ class meetupsController {
     }
   }
 
+  /**
+   * Get all meetups objects in database
+   * @param {Object} req - server request
+   * @param {Object} res - server response
+   * @returns {Object} - custom server response with error/success
+   */
   static getMeetups(req, res) {
     const meetup = Meetups.getMeetups();
     return res.status(200).json({
@@ -21,6 +33,12 @@ class meetupsController {
     });
   }
 
+  /**
+   * Get a meetup object in database using a unique id
+   * @param {Object} req - server request
+   * @param {Object} res - server response
+   * @returns {Object} - custom server response with error/success
+   */
   static getMeetup(req, res) {
     const meetup = Meetups.getMeetup(req.params.id);
     if (!meetup) {
@@ -33,6 +51,12 @@ class meetupsController {
     });
   }
 
+  /**
+   * Update a meetup object in database using a unique id
+   * @param {Object} req - server request
+   * @param {Object} res - server response
+   * @returns {Object} - custom server response with error/success
+   */
   static updateMeetup(req, res) {
     try {
       const updatedMeetup = Meetups.updateMeetup(req.params.id, req.body);
@@ -51,6 +75,12 @@ class meetupsController {
     }
   }
 
+  /**
+   * Delete a meetup object in database using a unique id
+   * @param {Object} req - server request
+   * @param {Object} res - server response
+   * @returns {Object} - custom server response with error/success
+   */
   static deleteMeetup(req, res) {
     const deleted = Meetups.deleteMeetup(req.params.id);
     if (!deleted) {
