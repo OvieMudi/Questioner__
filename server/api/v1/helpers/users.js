@@ -4,7 +4,7 @@ const userDB = db.users;
 
 class Users {
   /**
-   * Create user in database using unique
+   * Create user in database
    * Assign a unique id to user
    * @param {Object} data - http request body
    * @returns {Object} - User object if success
