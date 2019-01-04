@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build && nodemon ./build/index.js",
-    "build": "npm run clean && npm run babel-build",
+    "build": "npm run clean-build && npm run babel-build",
     "babel-build": "babel -d ./build ./server -s",
+    "clean-build": "rm -rf build && mkdir build",
     "serve": "SET NODE_ENV=dev && node ./dist/index.js",
-    "clean": "rm -rf build && mkdir build",
     "test": "mocha --compilers js:@babel/register --exit",
     "test-coverage": "cross-env NODE_ENV=test nyc mocha --exit",
     "report-coverage": "nyc report --reporter=text-lcov | coveralls"
