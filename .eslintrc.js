@@ -8,6 +8,7 @@ module.exports = {
       "linebreak-style": 0,
       "no-underscore-dangle": [
         "error", { "allowAfterThis": true }
-      ]
+      ],
+      "prefer-destructuring": ["error", {"object": true, "array": false}]
     },
 };

@@ -1,6 +1,10 @@
 import Meetups from '../helpers/meetups';
+import db from '../../../db/v1/db';
 
-class meetupsController {
+// eslint-disable-next-line import/no-mutable-exports
+let currentMeetup = db.meetups[0];
+
+class MeetupsController {
   /**
    * Create new meetup in database
    * @param {Object} req - server request
@@ -10,6 +14,7 @@ class meetupsController {
   static postMeetup(req, res) {
     try {
       const meetup = Meetups.createMeetup(req.body);
+      currentMeetup = meetup;
       return res.status(201).json({
         status: 201, data: [meetup],
       });
@@ -65,6 +70,7 @@ class meetupsController {
           status: 404, error: 'meetup does not exist',
         });
       }
+      currentMeetup = updatedMeetup;
       return res.status(200).json({
         status: 200, data: [updatedMeetup],
       });
@@ -88,10 +94,12 @@ class meetupsController {
         status: 404, error: 'meetup does not exist',
       });
     }
+    currentMeetup = db.meetups[db.meetups.length - 1];
     return res.status(200).json({
       status: 200, message: 'meetup deleted',
     });
   }
 }
 
-export default meetupsController;
+export default MeetupsController;
+export { currentMeetup };
