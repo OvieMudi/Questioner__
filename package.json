@@ -4,9 +4,11 @@
   "description": "Crowd-source questions for a scheduled meetup",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node ./server/index.js",
-    "build": "babel ./server -d dist",
+    "start": "npm run build && nodemon ./build/index.js",
+    "build": "npm run clean && npm run babel-build",
+    "babel-build": "babel -d ./build ./server -s",
     "serve": "SET NODE_ENV=dev && node ./dist/index.js",
+    "clean": "rm -rf build && mkdir build",
     "test": "mocha --compilers js:@babel/register --exit",
     "test-coverage": "cross-env NODE_ENV=test nyc mocha --exit",
     "report-coverage": "nyc report --reporter=text-lcov | coveralls"
