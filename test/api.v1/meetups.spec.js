@@ -67,6 +67,7 @@ function meetupTests() {
       }));
   });
 
+
   describe('GET /api/v1/meetups', () => {
     it('should get all meetups in db', () => chai.request(server)
       .get('/api/v1/meetups')
@@ -80,6 +81,22 @@ function meetupTests() {
         expect(res.body.data[0]).to.have.property('tags');
       }));
   });
+
+
+  describe('GET /api/v1/meetups/upcoming', () => {
+    it('should get all upcoming meetups in db', () => chai.request(server)
+      .get('/api/v1/meetups/upcoming')
+      .then((res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.data[0]).to.have.property('id');
+        expect(res.body.data[0]).to.have.property('createdOn');
+        expect(res.body.data[0]).to.have.property('location');
+        expect(res.body.data[0]).to.have.property('images');
+        expect(res.body.data[0]).to.have.property('happeningOn');
+        expect(res.body.data[0]).to.have.property('tags');
+      }));
+  });
+
 
   describe('GET /api/v1/meetups:id', () => {
     it('should get a meetup from db', () => chai.request(server)

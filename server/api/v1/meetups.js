@@ -8,6 +8,9 @@ Router.route('/api/v1/meetups')
   .post(meetupsController.postMeetup)
   .get(meetupsController.getMeetups);
 
+Router.route('/api/v1/meetups/upcoming')
+  .get(meetupsController.getUpcoming);
+
 Router.route('/api/v1/meetups/:id')
   .get(meetupsController.getMeetup)
   .patch(meetupsController.updateMeetup)
