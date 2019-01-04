@@ -46,11 +46,20 @@ class Meetups {
   }
 
   /**
-   * Get all meetup in database
+   * Get all meetups in database
    * @returns {Array} - array of Meetup objects
    */
   static getMeetups() {
     return meetupsDB;
+  }
+
+  /**
+   * Get all upcoming meetups in database
+   * @returns {Array} - array of upcoming Meetup objects
+   */
+  static getUpcomingMeetups() {
+    const upcoming = meetupsDB.filter(meetup => meetup.happeningOn > new Date());
+    return upcoming;
   }
 
   /**
