@@ -1,11 +1,18 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import router from './api/v1/users';
+import usersRouter from './api/v1/users';
+import meetupsRouter from './api/v1/meetups';
+import questionsRouter from './api/v1/questions';
 
 const app = express();
 const port = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/', router);
+app.use(bodyParser.json());
+app.use(bodyParser.json({ type: 'application/json' }));
+app.use(bodyParser.text());
+app.use('/', usersRouter);
+app.use('/', meetupsRouter);
+app.use('/', questionsRouter);
 
 app.get('/', (req, res) => {
   res.send('ROOT');
