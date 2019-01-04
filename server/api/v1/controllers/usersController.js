@@ -1,37 +1,20 @@
-/* eslint-disable class-methods-use-this */
 import Users from '../helpers/users';
+import db from '../../../db/v1/db';
 
-// const { users } = db;
+// eslint-disable-next-line import/no-mutable-exports
+let currentUser = db.users[0];
 
 class UsersController {
-  constructor() {
-    this._currentUser = {};
-    this.postUser = this.postUser.bind(this);
-  }
-
-  /**
-   * @returns {Object} - complete currentUser object
-   */
-  get currentUser() {
-    return this._currentUser;
-  }
-
-  /**
-   * @param {Object} user - complete user information
-   */
-  set currentUser(user) {
-    this._currentUser = user;
-  }
-
   /**
    * Create new user in database
    * @param {Object} req - server request
    * @param {Object} res - server response
    * @returns {Object} - custom server response with error/success
    */
-  postUser(req, res) {
+  static postUser(req, res) {
     try {
       const user = Users.createUser(req.body);
+      currentUser = user;
       return res.status(201).json({
         status: 201, data: [user],
       });
@@ -48,7 +31,7 @@ class UsersController {
    * @param {Object} res - server response
    * @returns {Object} - custom server response with error/success
    */
-  getUsers(req, res) {
+  static getUsers(req, res) {
     const users = Users.getUsers();
     return res.status(200).json({
       status: 200, data: users,
@@ -61,7 +44,7 @@ class UsersController {
    * @param {Object} res - server response
    * @returns {Object} - custom server response with error/success
    */
-  getUser(req, res) {
+  static getUser(req, res) {
     const user = Users.getUser(req.params.id);
     if (!user) {
       return res.status(404).json({
@@ -79,7 +62,7 @@ class UsersController {
    * @param {Object} res - server response
    * @returns {Object} - custom server response with error/success
    */
-  updateUser(req, res) {
+  static updateUser(req, res) {
     try {
       const modifiedUser = Users.updateUser(req.params.id, req.body);
       if (!modifiedUser) {
@@ -103,7 +86,7 @@ class UsersController {
    * @param {Object} res - server response
    * @returns {Object} - custom server response with error/success
    */
-  deleteUser(req, res) {
+  static deleteUser(req, res) {
     const { id } = req.params;
     const deleted = Users.deleteUser(id);
     if (!deleted) {
@@ -111,10 +94,12 @@ class UsersController {
         status: 404, message: 'user does not exist',
       });
     }
+    currentUser = undefined;
     return res.status(200).json({
       status: 200, message: 'user deleted',
     });
   }
 }
 
-export default new UsersController();
+export default UsersController;
+export { currentUser };
