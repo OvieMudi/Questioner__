@@ -15,7 +15,7 @@ app.use('/', meetupsRouter);
 app.use('/', questionsRouter);
 
 app.get('/', (req, res) => {
-  res.send('ROOT');
+  res.send('WELCOME TO QUESTIONER! Please explore the api routes!');
 });
 
 app.listen(port, () => {
