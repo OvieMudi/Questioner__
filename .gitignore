@@ -65,3 +65,4 @@ chores.md
 .vscode
 .coveralls.yml
 /build
+/dist
