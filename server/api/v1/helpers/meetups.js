@@ -1,6 +1,8 @@
 import db, { meetupModel } from '../../../db/v1/db';
+import { currentUser } from '../controllers/usersController';
 
 const meetupsDB = db.meetups;
+const rsvpDB = db.rsvps;
 
 class Meetups {
   /**
@@ -35,9 +37,6 @@ class Meetups {
         const happeningOn = Meetups.setHappeningOn(data[propName]);
         meetup[propName] = happeningOn;
         return;
-      }
-      if (data[propName].length < 3) {
-        throw Error(`invalid ${propName}`);
       }
       meetup[propName] = data[propName];
     }); // end forEach
@@ -104,9 +103,6 @@ class Meetups {
         meetup[propName] = happeningOn;
         return;
       }
-      if (data[propName].length < 3) {
-        throw Error(`invalid ${propName}`);
-      }
       meetup[propName] = data[propName];
     }); // end forEach
     return Meetups.getMeetup(id);
@@ -131,12 +127,9 @@ class Meetups {
    * Check if Meetup images inputs are valid
    * @param {Array} imagesArray - images input
    * @returns {Array} - on success
-   * @throws {Error} - on failure
    */
   static validateImages(imagesArray) {
-    const error = Error('invalid images');
     if (!(imagesArray instanceof Array)) return [];
-    if (imagesArray.some(image => image.length < 11)) throw error;
     return imagesArray;
   }
 
@@ -149,7 +142,6 @@ class Meetups {
   static validateTags(tagsArray) {
     const error = Error('invalid tags');
     if (!(tagsArray instanceof Array)) throw error;
-    if (!tagsArray.every(tag => tag.length > 3)) throw error;
     return tagsArray;
   }
 
@@ -161,10 +153,44 @@ class Meetups {
    */
   static setHappeningOn(dateString) {
     const error = new Error('invalid date string');
-    if (typeof dateString !== 'string') throw error;
     const happeningOn = new Date(dateString);
     if (!happeningOn.getDate()) throw error;
     return happeningOn;
+  }
+
+  /**
+   * Create rsvp status for meetup
+   * @param {String} idString - meetup id
+   * @param {String} responseString - rsvp response
+   * @returns {Object | undefined} - on success or failure
+   */
+  static createRsvp(idString, responseString) {
+    const meetupId = parseInt(idString, 10);
+    const response = responseString.toLowerCase();
+    const rsvp = {
+      id: parseInt(Math.random() * 1000000, 10),
+      meetup: meetupId,
+      user: currentUser.id,
+      response,
+    };
+    if (rsvp.response === 'yes'
+    || rsvp.response === 'no'
+    || rsvp.response === 'maybe') {
+      rsvpDB.push(rsvp);
+      return rsvp;
+    }
+    return undefined;
+  }
+
+  /**
+   * Create rsvp status for meetup
+   * @param {String} idString - meetup id
+   * @returns {Array} - populated on success | empty on failure
+   */
+  static getRsvps(idString) {
+    const meetupId = parseInt(idString, 10);
+    const rsvps = rsvpDB.filter(rsvp => rsvp.meetup === meetupId);
+    return rsvps;
   }
 }
 

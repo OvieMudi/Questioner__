@@ -27,13 +27,6 @@ export const meetupModel = {
   tags: [String, String],
 };
 
-export const rsvpModel = {
-  id: Number,
-  meetup: Number,
-  user: Number,
-  response: String,
-};
-
 
 export default {
   users: [{
@@ -79,4 +72,7 @@ export default {
     body: "Just saying... Since we're a group that hate each other.",
     votes: 400,
   }],
+
+
+  rsvps: [],
 };

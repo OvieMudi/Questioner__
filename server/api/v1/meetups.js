@@ -16,4 +16,8 @@ Router.route('/api/v1/meetups/:id')
   .patch(meetupsController.updateMeetup)
   .delete(meetupsController.deleteMeetup);
 
+Router.route('/api/v1/meetups/:id/rsvps')
+  .post(meetupsController.postRsvp)
+  .get(meetupsController.getRsvps);
+
 export default Router;

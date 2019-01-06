@@ -4,7 +4,7 @@
   "description": "Crowd-source questions for a scheduled meetup",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && nodemon ./dist/index.js",
+    "start": "npm run build && node ./dist/index.js",
     "build": "npm run clean-build && npm run babel-build",
     "babel-build": "babel ./server -d dist",
     "clean-build": "rm -rf dist",
