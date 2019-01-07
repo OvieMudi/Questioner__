@@ -27,6 +27,13 @@ export const meetupModel = {
   tags: [String, String],
 };
 
+export const rsvpModel = {
+  id: Number,
+  meetup: Number,
+  user: Number,
+  response: String,
+};
+
 
 export default {
   users: [{

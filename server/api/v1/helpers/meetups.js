@@ -177,7 +177,11 @@ class Meetups {
     || rsvp.response === 'no'
     || rsvp.response === 'maybe') {
       rsvpDB.push(rsvp);
-      return rsvp;
+      return {
+        meetup: meetupId,
+        topic: meetupsDB.find(obj => obj.id === meetupId).topic,
+        status: rsvp.response,
+      };
     }
     return undefined;
   }
