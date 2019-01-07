@@ -79,4 +79,7 @@ export default {
     body: "Just saying... Since we're a group that hate each other.",
     votes: 400,
   }],
+
+
+  rsvps: [],
 };

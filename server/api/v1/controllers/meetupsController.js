@@ -112,6 +112,37 @@ class MeetupsController {
       status: 200, message: 'meetup deleted',
     });
   }
+
+  /**
+   * Create a meetup rsvp status in database
+   * @param {Object} req - server request
+   * @param {Object} res - server response
+   * @returns {JSON} - custom server response with error/success
+   */
+  static postRsvp(req, res) {
+    const rsvp = Meetups.createRsvp(req.params.id, req.body.response);
+    if (!rsvp) {
+      return res.status(400).json({
+        status: 400, error: 'invalid data',
+      });
+    }
+    return res.status(201).json({
+      status: 201, data: [rsvp],
+    });
+  }
+
+  /**
+   * Get all meetup rsvp status in database
+   * @param {Object} req - server request
+   * @param {Object} res - server response
+   * @returns {JSON} - custom server response with error/success
+   */
+  static getRsvps(req, res) {
+    const rsvp = Meetups.getRsvps(req.params.id);
+    return res.status(200).json({
+      status: 200, data: rsvp,
+    });
+  }
 }
 
 export default MeetupsController;
