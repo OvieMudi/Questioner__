@@ -1,9 +1,5 @@
 @import "./usr_dashboard.css";
 
-.fa-plus-circle:before {
-  font-size: 1.5em;
-}
-
 dialog {
   background-color: #009688;
   color: inherit;
@@ -32,3 +28,7 @@ form {
   flex-direction: column;
   align-items: stretch;
 }
+
+
+
+
