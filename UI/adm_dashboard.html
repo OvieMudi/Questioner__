@@ -5,139 +5,135 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Admin Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="adm_dashboard.css"/>
-    <link rel="stylesheet" href="../../line-awesome/line-awesome/css/line-awesome-font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../node_modules/dialog-polyfill/dialog-polyfill.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./stylesheets/adm_dashboard.css"/>
   </head>
   <body>
     <!------------ header -------------->
     <header class="header">
-      <div class="header_homelink"><a href="#">Questioner</a> </div>
-      <div class="header_link">
+      <h1 class="homelink"><a href="#">Questioner</a></h1>
+      <nav>
         <li><a href="#">Support</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="#">Profile</a></li>
         <li><a href="#">Sign out</a></li>
-      </div>
+      </nav>
     </header>
 
-    <!------------ sidebar -------------->
-    <nav>
-      <figure class="avatar_container">
-        <img class="img_roundW" src="./assets/images/Obi-Wan.jpg" alt="avatar here">
-        <figcaption>Good afternoon USER</figcaption>
-      </figure>
-      <div class="nav_container">
-        <div class="nav_element">
-          <span>There are 2 new meetups</span>
-        </div>
-        <div class="nav_element">
-          <span>There are 11 total meetups</span>
-        </div>
-        <div class="nav_element">
-          <span>You have 1 new meetup close to you</span>
-        </div>
-        <div class="nav_element">
-          <span>You are scheduled to attend 30 meetups</span>
-        </div>
-      </div>
-    </nav>
-    
+    <!------------ new meetup dialog box -------------->
+    <dialog class="dialogBox">
+      <form method="dialog">
+        <label for="topic">Meetup Topic</label>
+        <input id="topic" type="text">
+        
+        <label for="date">Date</label>
+        <input id="date" type="text">
+        
+        <label for="location">Location</label>
+        <input id="location" type="text">
+        
+        <label for="tags">tags</label>
+        <input id="tags" type="text">
+        
+        <label for="images">images</label>
+        <input id="images" type="text">
+        
+        <button id="submitBtn">Create</button>
+      </form> 
+    </dialog>
+
     <!------------ main content -------------->
     <main>
-      <div class="main_container">
-        <div class="meetups_hdr">
-          <span>Meetups</span><i class="fa fa-plus-circle"></i>
-        </div>
-        <div class="meetups_container">
-          <div class="meetup">
-            <div>
-              <span>Meetup Title</span>
-              <span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa....</span>
-              <span>Date: 21/12/21</span>
+      <div class="main-container">
+        <section class="meetup-nav">
+          <button id="addMeetupBtn" class="meetup-nav-link"><a href="#"> <i class="material-icons"> add_circle_outline </i> Create</a>
+          </button>
+          <button class="meetup-nav-link"><a href="#"> <i class="material-icons"> timer </i>  Upcoming</a>
+          </button>
+          <button class="meetup-nav-link"><a href="#"> <i class="material-icons"> schedule </i> Scheduled</a>
+          </button>
+        </section>
+
+        <h2>Meetups</h2>
+        
+        <section class="meetups">
+            <div class="meetup">
+                <img src="./assets/images/star-wars-trooper-mask-512.png" alt="meetup image">
+                <h3><a href="#">How to become a better web developer</a></h3>
+                <span class="meetup-info">
+                  <span class="meetup-date">Happening: <span>17/10/18 </span></span>
+                  <span><a href="#"><i class="material-icons"> delete </i></span></a> 
+                </span>
             </div>
-            <figure>
-              <img class="img_roundH" src="./assets/images/star-wars-trooper-mask-512.png" alt="avatar here">
-              <figcaption>usernameofauser</figcaption>
-            </figure>
-          </div>
-          <div class="meetup">
-            <div>
-              <span>Meetup Title</span>
-              <span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa....</span>
-              <span>Date: 21/12/21</span>
+            <div class="meetup">
+                <img src="./assets/images/star-wars-trooper-mask-512.png" alt="meetup image">
+                <h3><a href="#">How to become a better web developer</a></h3>
+                <span class="meetup-info">
+                  <span class="meetup-date">Happening: <span>17/10/18 </span></span>
+                  <span><a href="#"><i class="material-icons"> delete </i></span></a> 
+                </span>
             </div>
-            <figure>
-              <img class="img_roundH" src="./assets/images/star-wars-trooper-mask-512.png" alt="avatar here">
-              <figcaption>usernameofauser</figcaption>
-            </figure>
-          </div>
-          <div class="meetup">
-            <div>
-              <span>Meetup Title</span>
-              <span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa....</span>
-              <span>Date: 21/12/21</span>
+            <div class="meetup">
+                <img src="./assets/images/star-wars-trooper-mask-512.png" alt="meetup image">
+                <h3><a href="#">How to become a better web developer</a></h3>
+                <span class="meetup-info">
+                  <span class="meetup-date">Happening: <span>17/10/18 </span></span>
+                  <span><a href="#"><i class="material-icons"> delete </i></span></a> 
+                </span>
             </div>
-            <figure>
-              <img class="img_roundH" src="./assets/images/star-wars-trooper-mask-512.png" alt="avatar here">
-              <figcaption>usernameofauser</figcaption>
-            </figure>
-          </div>
-          <div class="meetup">
-            <div>
-              <span>Meetup Title</span>
-              <span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa....</span>
-              <span>Date: 21/12/21</span>
+            <div class="meetup">
+                <img src="./assets/images/star-wars-trooper-mask-512.png" alt="meetup image">
+                <h3><a href="#">How to become a better web developer</a></h3>
+                <span class="meetup-info">
+                  <span class="meetup-date">Happening: <span>17/10/18 </span></span>
+                  <span><a href="#"><i class="material-icons"> delete </i></span></a> 
+                </span>
             </div>
-            <figure>
-              <img class="img_roundH" src="./assets/images/star-wars-trooper-mask-512.png" alt="avatar here">
-              <figcaption>usernameofauser</figcaption>
-            </figure>
-          </div>
-          <div class="meetup">
-            <div>
-              <span>Meetup Title</span>
-              <span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa....</span>
-              <span>Date: 21/12/21</span>
+            <div class="meetup">
+                <img src="./assets/images/star-wars-trooper-mask-512.png" alt="meetup image">
+                <h3><a href="#">How to become a better web developer</a></h3>
+                <span class="meetup-info">
+                  <span class="meetup-date">Happening: <span>17/10/18 </span></span>
+                  <span><a href="#"><i class="material-icons"> delete </i></span></a> 
+                </span>
             </div>
-            <figure>
-              <img class="img_roundH" src="./assets/images/star-wars-trooper-mask-512.png" alt="avatar here">
-              <figcaption>usernameofauser</figcaption>
-            </figure>
-          </div>
-          <div class="meetup">
-            <div>
-              <span>Meetup Title</span>
-              <span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa....</span>
-              <span>Date: 21/12/21</span>
+            <div class="meetup">
+                <img src="./assets/images/star-wars-trooper-mask-512.png" alt="meetup image">
+                <h3><a href="#">How to become a better web developer</a></h3>
+                <span class="meetup-info">
+                  <span class="meetup-date">Happening: <span>17/10/18 </span></span>
+                  <span><a href="#"><i class="material-icons"> delete </i></span></a> 
+                </span>
             </div>
-            <figure>
-              <img class="img_roundH" src="./assets/images/star-wars-trooper-mask-512.png" alt="avatar here">
-              <figcaption>usernameofauser</figcaption>
-            </figure>
-          </div>
-          <div class="meetup">
-            <div>
-              <span>Meetup Title</span>
-              <span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa....</span>
-              <span>Date: 21/12/21</span>
+            <div class="meetup">
+                <img src="./assets/images/star-wars-trooper-mask-512.png" alt="meetup image">
+                <h3><a href="#">How to become a better web developer</a></h3>
+                <span class="meetup-info">
+                  <span class="meetup-date">Happening: <span>17/10/18 </span></span>
+                  <span><a href="#"><i class="material-icons"> delete </i></span></a> 
+                </span>
             </div>
-            <figure>
-              <img class="img_roundH" src="./assets/images/star-wars-trooper-mask-512.png" alt="avatar here">
-              <figcaption>usernameofauser</figcaption>
-            </figure>
-          </div>
-          <div class="meetup">
-            <div>
-              <span>Meetup Title</span>
-              <span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa....</span>
-              <span>Date: 21/12/21</span>
+            <div class="meetup">
+                <img src="./assets/images/star-wars-trooper-mask-512.png" alt="meetup image">
+                <h3><a href="#">How to become a better web developer</a></h3>
+                <span class="meetup-info">
+                  <span class="meetup-date">Happening: <span>17/10/18 </span></span>
+                  <span><a href="#"><i class="material-icons"> delete </i></span></a> 
+                </span>
             </div>
-            <figure>
-              <img class="img_roundH" src="./assets/images/star-wars-trooper-mask-512.png" alt="avatar here">
-              <figcaption>usernameofauser</figcaption>
-            </figure>
-          </div>
-        </div>
+            <div class="meetup">
+                <img src="./assets/images/star-wars-trooper-mask-512.png" alt="meetup image">
+                <h3><a href="#">How to become a better web developer</a></h3>
+                <span class="meetup-info">
+                  <span class="meetup-date">Happening: <span>17/10/18 </span></span>
+                  <span><a href="#"><i class="material-icons"> delete </i></span></a> 
+                </span>
+            </div>
+        </section>
       </div>
     </main>
+    <script src="../node_modules/dialog-polyfill/dialog-polyfill.js"></script>
+    <script src="./scripts/adm_dashboard.js"></script>
+
   </body>
 </html>
