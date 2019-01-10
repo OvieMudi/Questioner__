@@ -18,28 +18,7 @@ class Meetups {
       createdOn: new Date(),
     };
     const propNames = Object.keys(meetupModel);
-    propNames.forEach((propName) => {
-      if (propName === 'id' || propName === 'createdOn') return; // continue next loop
-      if (!data[propName] && propName !== 'images') { // images are optional
-        throw Error(`${propName} is empty/invalid`);
-      }
-      if (propName === 'images') {
-        const images = Meetups.validateImages(data[propName]);
-        meetup[propName] = images;
-        return;
-      }
-      if (propName === 'tags') {
-        const tags = Meetups.validateTags(data[propName]);
-        meetup[propName] = tags;
-        return;
-      }
-      if (propName === 'happeningOn') {
-        const happeningOn = Meetups.setHappeningOn(data[propName]);
-        meetup[propName] = happeningOn;
-        return;
-      }
-      meetup[propName] = data[propName];
-    }); // end forEach
+    Meetups.validateMeetup(propNames, data, meetup);
     meetupsDB.push(meetup);
     return Meetups.getMeetup(meetup.id);
   }
@@ -85,26 +64,7 @@ class Meetups {
     const id = parseInt(idString, 10);
     const meetup = meetupsDB.find(obj => obj.id === id);
     const propNames = Object.keys(data);
-    propNames.forEach((propName) => {
-      if (propName === 'id' || propName === 'createdOn') return; // continue next loop
-      if (!data[propName] && propName !== 'images') return; // images are optional
-      if (propName === 'images') {
-        const images = Meetups.validateImages(data[propName]);
-        meetup[propName] = images;
-        return;
-      }
-      if (propName === 'tags') {
-        const tags = Meetups.validateTags(data[propName]);
-        meetup[propName] = tags;
-        return;
-      }
-      if (propName === 'happeningOn') {
-        const happeningOn = Meetups.setHappeningOn(data[propName]);
-        meetup[propName] = happeningOn;
-        return;
-      }
-      meetup[propName] = data[propName];
-    }); // end forEach
+    Meetups.validateMeetup(propNames, data, meetup);
     return Meetups.getMeetup(id);
   }
 
@@ -143,6 +103,38 @@ class Meetups {
     const error = Error('invalid tags');
     if (!(tagsArray instanceof Array)) throw error;
     return tagsArray;
+  }
+
+  /**
+   * Check if Meetup inputs are valid
+   * @param {Array} propNames - meetup schema keys
+   * @param {Object} data - form data
+   * @param {Object} meetupData - default data
+   * @returns {Array} - on success
+   */
+  static validateMeetup(propNames, data, meetupData) {
+    const meetup = meetupData;
+    propNames.forEach((propName) => {
+      if (propName === 'id' || propName === 'createdOn') return; // continue next loop
+      if (!data[propName] && propName !== 'images') return; // images are optional
+      if (propName === 'images') {
+        const images = Meetups.validateImages(data[propName]);
+        meetup[propName] = images;
+        return;
+      }
+      if (propName === 'tags') {
+        const tags = Meetups.validateTags(data[propName]);
+        meetup[propName] = tags;
+        return;
+      }
+      if (propName === 'happeningOn') {
+        const happeningOn = Meetups.setHappeningOn(data[propName]);
+        meetup[propName] = happeningOn;
+        return;
+      }
+      if (!data.location) throw Error('invalid location');
+      meetup[propName] = data[propName];
+    });
   }
 
   /**
