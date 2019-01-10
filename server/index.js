@@ -7,7 +7,6 @@ import questionsRouter from './api/v1/routes/questions';
 const app = express();
 const port = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use(bodyParser.text());
 app.use('/api/v1/users', usersRouter);
