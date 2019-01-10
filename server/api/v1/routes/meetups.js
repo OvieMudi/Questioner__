@@ -1,22 +1,22 @@
 import express from 'express';
-import meetupsController from './controllers/meetupsController';
+import meetupsController from '../controllers/meetupsController';
 
 const Router = express.Router();
 
 // CREATE, READ_ALL
-Router.route('/api/v1/meetups')
+Router.route('/')
   .post(meetupsController.postMeetup)
   .get(meetupsController.getMeetups);
 
-Router.route('/api/v1/meetups/upcoming')
+Router.route('/upcoming')
   .get(meetupsController.getUpcoming);
 
-Router.route('/api/v1/meetups/:id')
+Router.route('/:id')
   .get(meetupsController.getMeetup)
   .patch(meetupsController.updateMeetup)
   .delete(meetupsController.deleteMeetup);
 
-Router.route('/api/v1/meetups/:id/rsvps')
+Router.route('/:id/rsvps')
   .post(meetupsController.postRsvp)
   .get(meetupsController.getRsvps);
 
