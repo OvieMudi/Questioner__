@@ -1,26 +1,4 @@
-body {
-  font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
-  background: gray;
-  margin: 0;
-  color: whitesmoke;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: cornflowerblue;
-  font-size: 1em;
-  height: 8vh;
-}
-header .nav_homelink {
-  font-size: 1.5em;
-}
-header a {
-  padding: 0 2rem;
-  text-decoration: none;
-  color: inherit;
-}
+@import "./usr_dashboard.css";
 
 main {
   display: flex;
@@ -29,7 +7,7 @@ main {
 }
 
 .form_container {
-  background: rgb(72, 72, 73);
+  background: #455A64;
   min-width: 340px;
   margin-top: 4rem;
   padding: 20px 40px 60px 40px;
@@ -64,7 +42,7 @@ main {
   align-self: center;
   width: 100%;
   height: 30px;
-  background: steelblue;
+  background: #009688;
   border: transparent;
   color: white;
   font-weight: bold;

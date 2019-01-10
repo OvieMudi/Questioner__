@@ -1,0 +1,34 @@
+@import "./usr_dashboard.css";
+
+.fa-plus-circle:before {
+  font-size: 1.5em;
+}
+
+dialog {
+  background-color: #009688;
+  color: inherit;
+  text-align: center;
+  border: none;
+  padding: 2rem;
+  border-radius: 6px;
+  width: 40%;
+}
+
+dialog input {
+  height: 2em;
+  margin: .5em;
+}
+
+dialog #submitBtn {
+  background-color: #607D8B;
+  border: none;
+  color: white;
+  font-size: 1.3em;
+  border-radius: 2px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}

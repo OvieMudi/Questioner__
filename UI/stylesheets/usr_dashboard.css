@@ -1,0 +1,155 @@
+/* general styles */
+* {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* body styles */
+body {
+  display: grid;
+  grid-template-areas: 
+    "header header"
+    "content	  content";
+  grid-template-columns: 20vw;
+  grid-template-rows: 10vh 1fr;
+  height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+  color: whitesmoke;
+  background-color: #607D8B;
+}
+
+/* header bar styles */
+header {
+  grid-area: header;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #455A64;
+
+}
+header .homelink {
+  margin-left: 20px;
+
+}
+header nav {
+  display: flex;
+  margin-right: 20px;
+  padding: 0 10px;
+  
+}
+header li{
+  padding: 0 20px;
+  list-style: none;
+
+}
+
+
+/* main content styles */
+main {
+  grid-area: content;
+
+}
+
+main .main-container {
+  display: flex;
+  flex-direction: column;
+}
+
+main .meetup-nav {
+  display: flex;
+  justify-content: center;
+  border-radius: 3px;
+}
+
+.meetup-nav button {
+  background-color: #009688;
+  color: #212121;
+  font-size: 1.5em;
+  border-width: .5px;
+  border-radius: 5px;
+  letter-spacing: 2px;
+  height: auto;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin: 5px 1px 10px 1px;
+}
+
+.meetup-nav button:hover {
+  color: #525151;
+  background: #CFD8DC;
+}
+
+.meetup-nav a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1px;
+}
+
+main h2 {
+  color: #424141;
+  font-size: 2em;
+  margin: 0 20px;
+}
+
+main .meetups {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.meetups img {
+  height: 70%;
+  width: auto;
+}
+
+main .meetup {
+  background: #455A64;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  height: 300px;
+  width: 300px;
+  margin: 10px;
+  border-radius: 2px;
+}
+
+.meetup h3 {
+  margin: 5px;
+  text-align: center;
+  font-size: 1em;
+}
+
+.meetup .meetup-date {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  font-size: 0.8em;
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+    grid-template-areas:
+      "header"
+      "content";
+
+      grid-template-columns: 100vw;
+      grid-template-rows:
+        auto /* Header */
+        1fr; /* Content */
+    font-size: 0.8em;
+  }
+    
+  header li{
+    padding: 0 5px;
+    font-size: 0.8em;
+  }
+ 
+}

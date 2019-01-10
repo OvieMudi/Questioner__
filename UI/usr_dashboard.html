@@ -5,128 +5,80 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>User Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="usr_dashboard.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="./stylesheets/usr_dashboard.css"/>
   </head>
   <body>
     <!------------ header -------------->
     <header class="header">
-      <div class="header_homelink"><a href="#">Questioner</a> </div>
-      <div class="header_link">
+      <h1 class="homelink"><a href="#">Questioner</a></h1>
+      <nav>
         <li><a href="#">Support</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="#">Profile</a></li>
         <li><a href="#">Sign out</a></li>
-      </div>
+      </nav>
     </header>
-
-    <!------------ sidebar -------------->
-    <nav>
-      <figure class="avatar_container">
-        <img class="img_roundW" src="./assets/images/Obi-Wan.jpg" alt="avatar here">
-        <figcaption>Good afternoon USER</figcaption>
-      </figure>
-      <div class="nav_container">
-        <div class="nav_element">
-          <span>There are 2 new meetups</span>
-        </div>
-        <div class="nav_element">
-          <span>There are 11 total meetups</span>
-        </div>
-        <div class="nav_element">
-          <span>You have 1 new meetup close to you</span>
-        </div>
-        <div class="nav_element">
-          <span>You are scheduled to attend 30 meetups</span>
-        </div>
-      </div>
-    </nav>
     
     <!------------ main content -------------->
     <main>
-      <div class="main_container">
-        <div class="meetups_hdr"><span>Meetups</span></div>
-        <div class="meetups_container">
+      <div class="main-container">
+        <section class="meetup-nav">
+          <button class="meetup-nav-link"><a href="#"> <i class="material-icons"> timer </i>  Upcoming</a></button>
+          <button class="meetup-nav-link"><a href="#"> <i class="material-icons"> schedule </i> Scheduled</a></button>
+        </section>
+
+        <h2>Meetups</h2>
+
+        <section class="meetups">
           <div class="meetup">
-            <div>
-              <span>Meetup name and description and whatevers</span>
-              <span>Date: 21/12/21</span>
-            </div>
-            <figure>
-              <img class="img_roundH" src="./assets/images/yoda.jpg" alt="avatar here">
-              <figcaption>usernameofauser</figcaption>
-            </figure>  
+            <img src="./assets/images/star-wars-trooper-mask-512.png" alt="meetup image">
+            <h3><a href="#">How to become a better web developer</a></h3>
+            <span class="meetup-date">Happening: <span>17/10/18 </span></span>
           </div>
           <div class="meetup">
-            <div>
-              <span>Meetup name and description and whatevers</span>
-              <span>Date: 21/12/21</span>
-            </div>
-            <figure>
-              <img class="img_roundH" src="./assets/images/yoda.jpg" alt="avatar here">
-              <figcaption>usernameofauser</figcaption>
-            </figure>  
+            <img src="./assets/images/star-wars-trooper-mask-512.png" alt="meetup image">
+            <h3><a href="#">How to become a better web developer</a></h3>
+            <span class="meetup-date">Happening: <span>17/10/18 </span></span>
           </div>
           <div class="meetup">
-            <div>
-              <span>Meetup name and description and whatevers</span>
-              <span>Date: 21/12/21</span>
-            </div>
-            <figure>
-              <img class="img_roundH" src="./assets/images/yoda.jpg" alt="avatar here">
-              <figcaption>usernameofauser</figcaption>
-            </figure>  
+            <img src="./assets/images/star-wars-trooper-mask-512.png" alt="meetup image">
+            <h3><a href="#">How to become a better web developer</a></h3>
+            <span class="meetup-date">Happening: <span>17/10/18 </span></span>
           </div>
           <div class="meetup">
-            <div>
-              <span>Meetup name and description and whatevers</span>
-              <span>Date: 21/12/21</span>
-            </div>
-            <figure>
-              <img class="img_roundH" src="./assets/images/yoda.jpg" alt="avatar here">
-              <figcaption>usernameofauser</figcaption>
-            </figure>  
+            <img src="./assets/images/star-wars-trooper-mask-512.png" alt="meetup image">
+            <h3><a href="#">How to become a better web developer</a></h3>
+            <span class="meetup-date">Happening: <span>17/10/18 </span></span>
           </div>
           <div class="meetup">
-            <div>
-              <span>Meetup name and description and whatevers</span>
-              <span>Date: 21/12/21</span>
-            </div>
-            <figure>
-              <img class="img_roundH" src="./assets/images/yoda.jpg" alt="avatar here">
-              <figcaption>usernameofauser</figcaption>
-            </figure>  
+            <img src="./assets/images/star-wars-trooper-mask-512.png" alt="meetup image">
+            <h3><a href="#">How to become a better web developer</a></h3>
+            <span class="meetup-date">Happening: <span>17/10/18 </span></span>
           </div>
           <div class="meetup">
-            <div>
-              <span>Meetup name and description and whatevers</span>
-              <span>Date: 21/12/21</span>
-            </div>
-            <figure>
-              <img class="img_roundH" src="./assets/images/yoda.jpg" alt="avatar here">
-              <figcaption>usernameofauser</figcaption>
-            </figure>  
+            <img src="./assets/images/star-wars-trooper-mask-512.png" alt="meetup image">
+            <h3><a href="#">How to become a better web developer</a></h3>
+            <span class="meetup-date">Happening: <span>17/10/18 </span></span>
           </div>
           <div class="meetup">
-            <div>
-              <span>Meetup name and description and whatevers</span>
-              <span>Date: 21/12/21</span>
-            </div>
-            <figure>
-              <img class="img_roundH" src="./assets/images/yoda.jpg" alt="avatar here">
-              <figcaption>usernameofauser</figcaption>
-            </figure>  
+            <img src="./assets/images/star-wars-trooper-mask-512.png" alt="meetup image">
+            <h3><a href="#">How to become a better web developer</a></h3>
+            <span class="meetup-date">Happening: <span>17/10/18 </span></span>
           </div>
           <div class="meetup">
-            <div>
-              <span>Meetup name and description and whatevers</span>
-              <span>Date: 21/12/21</span>
-            </div>
-            <figure>
-              <img class="img_roundH" src="./assets/images/yoda.jpg" alt="avatar here">
-              <figcaption>usernameofauser</figcaption>
-            </figure>  
+            <img src="./assets/images/star-wars-trooper-mask-512.png" alt="meetup image">
+            <h3><a href="#">How to become a better web developer</a></h3>
+            <span class="meetup-date">Happening: <span>17/10/18 </span></span>
           </div>
-        </div>
+          <div class="meetup">
+            <img src="./assets/images/star-wars-trooper-mask-512.png" alt="meetup image">
+            <h3><a href="#">How to become a better web developer</a></h3>
+            <span class="meetup-date">Happening: <span>17/10/18 </span></span>
+          </div>
+          
+        </section>
       </div>
     </main>
+    <script src="./scripts/usr_dashboard.js"></script>
   </body>
 </html>
