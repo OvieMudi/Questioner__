@@ -13,7 +13,8 @@ class Users {
   static createUser(data) {
     const user = { id: parseInt(Math.random() * 1000000, 10) };
     const propNames = Object.keys(userModel);
-    const duplicate = userDB.find(obj => obj.username === data.username);
+    const duplicate = userDB.find(obj => obj.username === data.username)
+      || userDB.find(obj => obj.email === data.email);
     if (duplicate) throw Error('user already exit');
     propNames.forEach((propName) => {
       if (propName === 'id' || propName === 'registered' || propName === 'isAdmin') return;
@@ -66,7 +67,11 @@ class Users {
         // THROW EXCEPTION
         throw new Error(`${propName} is empty/invalid`);
       }
-      if (propName !== 'id' || propName !== 'createdOn') user[propName] = data[propName];
+      if (propName === 'id' || propName === 'createdOn'
+       || propName === 'username' || propName === 'email') {
+        throw Error(`${propName} cannot be changed`);
+      }
+      user[propName] = data[propName];
     });
     return Users.getUser(id);
   }
