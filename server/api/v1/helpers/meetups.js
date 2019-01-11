@@ -17,6 +17,8 @@ class Meetups {
       id: parseInt(Math.random() * 1000000, 10),
       createdOn: new Date(),
     };
+    const duplicate = meetupsDB.find(obj => obj.topic === data.topic);
+    if (duplicate) throw Error('meetup already exit');
     const propNames = Object.keys(meetupModel);
     Meetups.validateMeetup(propNames, data, meetup);
     meetupsDB.push(meetup);

@@ -13,6 +13,8 @@ class Users {
   static createUser(data) {
     const user = { id: parseInt(Math.random() * 1000000, 10) };
     const propNames = Object.keys(userModel);
+    const duplicate = userDB.find(obj => obj.username === data.username);
+    if (duplicate) throw Error('user already exit');
     propNames.forEach((propName) => {
       if (propName === 'id' || propName === 'registered' || propName === 'isAdmin') return;
       if (!data[propName] || data[propName] < 2) {
