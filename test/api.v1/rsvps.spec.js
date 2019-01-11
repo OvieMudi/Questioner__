@@ -21,7 +21,7 @@ before(() => {
     .send(meetupData)
     .then((res) => {
       // eslint-disable-next-line prefer-destructuring
-      id = res.body.data[res.body.data.length - 1].id;
+      id = res.body.data.id;
     });
 });
 // delete created meetup
@@ -38,9 +38,9 @@ describe('POST /api/v1/meetups/:id/rsvps', () => {
     .send({ response: 'yes' })
     .then((res) => {
       expect(res).to.have.status(201);
-      expect(res.body.data[0]).to.have.property('meetup');
-      expect(res.body.data[0]).to.have.property('topic');
-      expect(res.body.data[0]).to.have.property('status');
+      expect(res.body.data).to.have.property('meetup');
+      expect(res.body.data).to.have.property('topic');
+      expect(res.body.data).to.have.property('status');
     }));
 });
 

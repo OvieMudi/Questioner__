@@ -165,6 +165,7 @@ class Meetups {
       user: currentUser.id,
       response,
     };
+    console.log(rsvp);
     if (rsvp.response === 'yes'
     || rsvp.response === 'no'
     || rsvp.response === 'maybe') {

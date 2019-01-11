@@ -22,15 +22,16 @@ describe('POST /api/v1/meetups', () => {
     .type('form')
     .send(data)
     .then((res) => {
+      const body = res.body.data;
       // eslint-disable-next-line prefer-destructuring
-      id = res.body.data[res.body.data.length - 1].id;
+      id = body.id;
       expect(res).to.have.status(201);
-      expect(res.body.data[0]).to.have.property('id');
-      expect(res.body.data[0]).to.have.property('createdOn');
-      expect(res.body.data[0]).to.have.property('location');
-      expect(res.body.data[0]).to.have.property('images');
-      expect(res.body.data[0]).to.have.property('happeningOn');
-      expect(res.body.data[0]).to.have.property('tags');
+      expect(body).to.have.property('id');
+      expect(body).to.have.property('createdOn');
+      expect(body).to.have.property('location');
+      expect(body).to.have.property('images');
+      expect(body).to.have.property('happeningOn');
+      expect(body).to.have.property('tags');
     }));
 
   const noLocation = { ...data }; // copy data
@@ -51,7 +52,7 @@ describe('GET /api/v1/meetups', () => {
     .get('/api/v1/meetups')
     .then((res) => {
       expect(res).to.have.status(200);
-      expect(res.body.data[0]).to.have.property('id');
+      expect(res.body.data[0]).to.have.property('topic');
       expect(res.body.data[0]).to.have.property('createdOn');
       expect(res.body.data[0]).to.have.property('location');
       expect(res.body.data[0]).to.have.property('images');
@@ -80,13 +81,14 @@ describe('GET /api/v1/meetups:id', () => {
   it('should get a meetup from db', () => chai.request(server)
     .get(`/api/v1/meetups/${id}`)
     .then((res) => {
+      const body = res.body.data;
       expect(res).to.have.status(200);
-      expect(res.body.data[0]).to.have.property('id');
-      expect(res.body.data[0]).to.have.property('createdOn');
-      expect(res.body.data[0]).to.have.property('location');
-      expect(res.body.data[0]).to.have.property('images');
-      expect(res.body.data[0]).to.have.property('happeningOn');
-      expect(res.body.data[0]).to.have.property('tags');
+      expect(body).to.have.property('id');
+      expect(body).to.have.property('createdOn');
+      expect(body).to.have.property('location');
+      expect(body).to.have.property('images');
+      expect(body).to.have.property('happeningOn');
+      expect(body).to.have.property('tags');
     }));
 
   it('should return error for invalid/deleted data', () => chai.request(server)
@@ -103,13 +105,14 @@ describe('PATCH /api/v1/meetups/:id', () => {
     .type('form')
     .send({ location: 'Christophsys' })
     .then((res) => {
+      const body = res.body.data;
       expect(res).to.have.status(200);
-      expect(res.body.data[0]).to.have.property('id');
-      expect(res.body.data[0]).to.have.property('createdOn');
-      expect(res.body.data[0]).to.have.property('location');
-      expect(res.body.data[0]).to.have.property('images');
-      expect(res.body.data[0]).to.have.property('happeningOn');
-      expect(res.body.data[0]).to.have.property('tags');
+      expect(body).to.have.property('id');
+      expect(body).to.have.property('createdOn');
+      expect(body).to.have.property('location');
+      expect(body).to.have.property('images');
+      expect(body).to.have.property('happeningOn');
+      expect(body).to.have.property('tags');
     }));
 
   it('should return error for invalid/deleted data', () => chai.request(server)
