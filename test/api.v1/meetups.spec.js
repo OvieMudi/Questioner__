@@ -8,7 +8,7 @@ chai.use(chaiHttp);
 const data = {
   location: 'Outer Rim',
   images: ['http://image1.jpg', 'http://image2.jpg'],
-  topic: 'The New Threat',
+  topic: 'The New Threat ',
   happeningOn: '2019/01/07-11:00',
   tags: ['jedi', 'sith'],
 };
@@ -22,6 +22,7 @@ describe('POST /api/v1/meetups', () => {
     .type('form')
     .send(data)
     .then((res) => {
+      console.log(res.body);
       const body = res.body.data;
       // eslint-disable-next-line prefer-destructuring
       id = body.id;
