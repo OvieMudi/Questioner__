@@ -11,7 +11,7 @@ class questionsController {
     try {
       const question = Questions.createQuestion(req.body);
       return res.status(201).json({
-        status: 201, data: [question],
+        status: 201, data: question,
       });
     } catch (error) {
       return res.status(400).json({
@@ -47,7 +47,7 @@ class questionsController {
       });
     }
     return res.status(200).json({
-      status: 200, data: [question],
+      status: 200, data: question,
     });
   }
 
@@ -66,7 +66,7 @@ class questionsController {
         });
       }
       return res.status(200).json({
-        status: 200, data: [updatedQuestion],
+        status: 200, data: updatedQuestion,
       });
     } catch (error) {
       return res.status(400).json({
@@ -107,7 +107,7 @@ class questionsController {
       });
     }
     return res.status(200).json({
-      status: 200, data: [upvoted],
+      status: 200, data: upvoted,
     });
   }
 
@@ -125,7 +125,7 @@ class questionsController {
       });
     }
     return res.status(200).json({
-      status: 200, data: [downvoted],
+      status: 200, data: downvoted,
     });
   }
 }

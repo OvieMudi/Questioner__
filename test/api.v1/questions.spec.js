@@ -19,15 +19,16 @@ describe('POST /api/v1/questions', () => {
     .send(data)
     .then((res) => {
       // eslint-disable-next-line prefer-destructuring
-      id = res.body.data[res.body.data.length - 1].id;
+      id = res.body.data.id;
+      const body = res.body.data;
       expect(res).to.have.status(201);
-      expect(res.body.data[0]).to.have.property('id');
-      expect(res.body.data[0]).to.have.property('createdOn');
-      expect(res.body.data[0]).to.have.property('createdBy');
-      expect(res.body.data[0]).to.have.property('meetup');
-      expect(res.body.data[0]).to.have.property('title');
-      expect(res.body.data[0]).to.have.property('body');
-      expect(res.body.data[0]).to.have.property('votes');
+      expect(body).to.have.property('id');
+      expect(body).to.have.property('createdOn');
+      expect(body).to.have.property('createdBy');
+      expect(body).to.have.property('meetup');
+      expect(body).to.have.property('title');
+      expect(body).to.have.property('body');
+      expect(body).to.have.property('votes');
     }));
 });
 
@@ -50,14 +51,15 @@ describe('GET /api/v1/questions/:id', () => {
   it('should get one questions from db using id', () => chai.request(server)
     .get(`/api/v1/questions/${id}`)
     .then((res) => {
+      const body = res.body.data;
       expect(res).to.have.status(200);
-      expect(res.body.data[0]).to.have.property('id');
-      expect(res.body.data[0]).to.have.property('createdOn');
-      expect(res.body.data[0]).to.have.property('createdBy');
-      expect(res.body.data[0]).to.have.property('meetup');
-      expect(res.body.data[0]).to.have.property('title');
-      expect(res.body.data[0]).to.have.property('body');
-      expect(res.body.data[0]).to.have.property('votes');
+      expect(body).to.have.property('id');
+      expect(body).to.have.property('createdOn');
+      expect(body).to.have.property('createdBy');
+      expect(body).to.have.property('meetup');
+      expect(body).to.have.property('title');
+      expect(body).to.have.property('body');
+      expect(body).to.have.property('votes');
     }));
 });
 
@@ -67,14 +69,15 @@ describe('PATCH /api/v1/questions/:id', () => {
     .type('form')
     .send({ title: 'How to kill Vader', body: '' })
     .then((res) => {
+      const body = res.body.data;
       expect(res).to.have.status(200);
-      expect(res.body.data[0]).to.have.property('id');
-      expect(res.body.data[0]).to.have.property('createdOn');
-      expect(res.body.data[0]).to.have.property('createdBy');
-      expect(res.body.data[0]).to.have.property('meetup');
-      expect(res.body.data[0]).to.have.property('title');
-      expect(res.body.data[0]).to.have.property('body');
-      expect(res.body.data[0]).to.have.property('votes');
+      expect(body).to.have.property('id');
+      expect(body).to.have.property('createdOn');
+      expect(body).to.have.property('createdBy');
+      expect(body).to.have.property('meetup');
+      expect(body).to.have.property('title');
+      expect(body).to.have.property('body');
+      expect(body).to.have.property('votes');
     }));
 });
 
@@ -83,7 +86,7 @@ describe('PATCH /api/v1/questions/:id', () => {
     .patch(`/api/v1/questions/${id}/upvote`)
     .then((res) => {
       expect(res).to.have.status(200);
-      expect(res.body.data[0]).to.have.property('votes').eql(1);
+      expect(res.body.data).to.have.property('votes').eql(1);
     }));
 });
 
@@ -92,7 +95,7 @@ describe('PATCH /api/v1/questions/:id', () => {
     .patch(`/api/v1/questions/${id}/downvote`)
     .then((res) => {
       expect(res).to.have.status(200);
-      expect(res.body.data[0]).to.have.property('votes').eql(0);
+      expect(res.body.data).to.have.property('votes').eql(0);
     }));
 });
 

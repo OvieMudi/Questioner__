@@ -22,17 +22,18 @@ describe('POST /api/v1/users', () => {
     .send(data)
     .then((res) => {
       // eslint-disable-next-line prefer-destructuring
-      id = res.body.data[res.body.data.length - 1].id;
+      id = res.body.data.id;
       expect(res).to.have.status(201);
-      expect(res.body.data[0]).to.have.property('id');
-      expect(res.body.data[0]).to.have.property('firstname').eql('Luke');
-      expect(res.body.data[0]).to.have.property('lastname').eql('Skywalker');
-      expect(res.body.data[0]).to.have.property('othername').eql('Vaderson');
-      expect(res.body.data[0]).to.have.property('email').eql('luke@oldrepublic.com');
-      expect(res.body.data[0]).to.have.property('phoneNumber').eql('00661234567');
-      expect(res.body.data[0]).to.have.property('username').eql('skywalker');
-      expect(res.body.data[0]).to.have.property('registered');
-      expect(res.body.data[0]).to.have.property('isAdmin').that.is.a('boolean');
+      const body = res.body.data;
+      expect(body).to.have.property('id');
+      expect(body).to.have.property('firstname').eql('Luke');
+      expect(body).to.have.property('lastname').eql('Skywalker');
+      expect(body).to.have.property('othername').eql('Vaderson');
+      expect(body).to.have.property('email').eql('luke@oldrepublic.com');
+      expect(body).to.have.property('phoneNumber').eql('00661234567');
+      expect(body).to.have.property('username').eql('skywalker');
+      expect(body).to.have.property('registered');
+      expect(body).to.have.property('isAdmin').that.is.a('boolean');
     }));
 });
 describe('GET /api/v1/users', () => {
@@ -55,16 +56,17 @@ describe('GET /api/v1/users/:id', () => {
   it('should get information of a User from db', () => chai.request(server)
     .get(`/api/v1/users/${id}`)
     .then((res) => {
+      const body = res.body.data;
       expect(res).to.have.status(200);
-      expect(res.body.data[0]).to.have.property('id');
-      expect(res.body.data[0]).to.have.property('firstname');
-      expect(res.body.data[0]).to.have.property('lastname');
-      expect(res.body.data[0]).to.have.property('othername');
-      expect(res.body.data[0]).to.have.property('email');
-      expect(res.body.data[0]).to.have.property('phoneNumber');
-      expect(res.body.data[0]).to.have.property('username');
-      expect(res.body.data[0]).to.have.property('registered');
-      expect(res.body.data[0]).to.have.property('isAdmin');
+      expect(body).to.have.property('id');
+      expect(body).to.have.property('firstname');
+      expect(body).to.have.property('lastname');
+      expect(body).to.have.property('othername');
+      expect(body).to.have.property('email');
+      expect(body).to.have.property('phoneNumber');
+      expect(body).to.have.property('username');
+      expect(body).to.have.property('registered');
+      expect(body).to.have.property('isAdmin');
     }));
   it('should not find user with invalid id', () => chai.request(server)
     .get('/api/v1/users/_INVALID_ID_')
@@ -79,16 +81,17 @@ describe('Patch /api/v1/users', () => {
     .type('form')
     .send({ othername: 'Last Jedi Master' })
     .then((res) => {
+      const body = res.body.data;
       expect(res).to.have.status(200);
-      expect(res.body.data[0]).to.have.property('id');
-      expect(res.body.data[0]).to.have.property('firstname');
-      expect(res.body.data[0]).to.have.property('lastname');
-      expect(res.body.data[0]).to.have.property('othername').eql('Last Jedi Master');
-      expect(res.body.data[0]).to.have.property('email');
-      expect(res.body.data[0]).to.have.property('phoneNumber');
-      expect(res.body.data[0]).to.have.property('username');
-      expect(res.body.data[0]).to.have.property('registered');
-      expect(res.body.data[0]).to.have.property('isAdmin');
+      expect(body).to.have.property('id');
+      expect(body).to.have.property('firstname');
+      expect(body).to.have.property('lastname');
+      expect(body).to.have.property('othername').eql('Last Jedi Master');
+      expect(body).to.have.property('email');
+      expect(body).to.have.property('phoneNumber');
+      expect(body).to.have.property('username');
+      expect(body).to.have.property('registered');
+      expect(body).to.have.property('isAdmin');
     }));
 });
 describe('DELETE /api/v1/users/:id', () => {
