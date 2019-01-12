@@ -17,16 +17,18 @@ Run the folling commands on the command line
 
 ```git clone https://github.com/OvieMudi/Questioner__.git```
 
-```cd Questioner__```
+``` cd Questioner__ ```
+
+``` git checkout develop ```
 
 ##### Install dependencies
-```npm install```
+``` npm install ```
 
 ### Tests
 Questioner uses NodeJs Mocha framework and the Chai assertion library to test all API endpoints to ensure a functional, bug-free deployment.
 
 ##### Running the tests
-```npm test```
+``` npm test ```
 
 ## Deployment
 ### Api Deployment
@@ -34,11 +36,26 @@ Questioner API is deployed to [Heroku](https://calm-hamlet-71164.herokuapp.com/)
 
 ##### How to deploy
 Using the command line:
-```git push heroku develop:master```
+
+``` git push heroku develop:master ```
 
 However, it is recommended to deploy Questioner using automated web services like [GitHub](https://github.com) which automate deployment (and perform security checks, unit tests, etc).
 
 Note that you must have an account [Heroku](https://heroku.com).
 
 
+## Technology Stack
+- Nodejs (Express framework)
+- ES6 Javascript  (Airbnb style guide)
+- Compiled with Babel
 
+#### Testing tools
+- Mocha (Test Framework)
+- Chai (Assertion Library)
+- Istanbul  (code instrumenter)
+- NYC (Istanbul's command line interface)
+- Postman (Testing API endpoints)
+
+
+## Authors
+Ovie Udih
