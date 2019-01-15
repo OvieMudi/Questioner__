@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>User Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="./stylesheets/comment.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="./stylesheets/usr_dashboard.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+
+  </head>
+  <body>
+    <!------------ header -------------->
+    <header class="header">
+      <h1 class="homelink"><a href="#">Questioner</a></h1>
+      <nav>
+        <li><a href="#">Support</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Sign out</a></li>
+      </nav>
+    </header>
+
+    <!------------ main content -------------->
+    <main>
+      <div class="main-container">
+        <!-- <section class="meetup-nav">
+          <button class="meetup-nav-link"><a href="#"> <i class="material-icons"> timer </i>  Upcoming</a></button>
+          <button class="meetup-nav-link"><a href="#"> <i class="material-icons"> schedule </i> Scheduled</a></button>
+        </section>
+
+        <h2>Meetups</h2> -->
+
+        <section class="meetups">
+          <div class="row clearfix">
+            <div class="row clearfix">
+                <div class="column-side-l">
+                  <h2 class="profile-name">Ben Skywalker<i class="fas fa-user rit"></i></h2>
+                  <p class="view-profile"><a href="user_activity.html">3 Question Posted</a> . <a href="user_activity.html">3 Comment Posted</a><a href="profile.html" title="edit profile"><i class="far fa-edit rit"></i></a></p>
+                </div>
+                <div class="column-middle">
+                  <div class="meetup-card">Comment on Question </div>
+
+                  <div id="posted-question">
+                          <h2 class="posted-by">Adeosun Makinde</h2>
+                            <p class="content"> Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat</p>
+                          <p class="card-footer">
+                            4 Comment <i class="fab fa-discourse"></i>
+                            <span class="rit"><a href="#"> 3 Upvote</a> &nbsp;.&nbsp; <a href="#"> 4 Downvote</a></span>
+                          </p>
+                      </div>
+                  <br/>
+                  <div class="card">
+                          <textarea name="textarea" id="comment"  rows="6" placeholder="Comment on question"></textarea>
+                          <a href="#"><button class="blue-btn" type="button">Comment</button></a>
+                  </div>
+
+                  <div id="posted-question">
+                      <h2 class="posted-by">David Akinola</a> </h2>
+                        <p class="comment"> Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat</p>
+                  </div>
+                  <div id="posted-question">
+                      <h2 class="posted-by">Lilian More</h2>
+                          <p class="comment"> Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat</p>
+                  </div>
+
+
+
+
+                </div>
+                <div class="column-side-r">
+
+                  <div class="upcoming-meetup">Upcoming Meetup's  <i class="fas fa-calendar-week rit"></i></div>
+                    <div class="card-side">
+                      <h2 class="upcoming-title">Lorem ipsum dolor sit amet, cons adipiscing</h2>
+                      <p class="card-footer-side">
+                        <a href="#">4 <i class="far fa-question-circle qu"></i></a>
+                        <a href="#">Attend </a>
+                        <span class="rit">Jan 4th</span>
+                      </p>
+                    </div>
+
+                    <div class="card-side">
+                      <h2 class="upcoming-title">Lorem ipsum dolor sit amet, cons adipiscing</h2>
+                      <p class="card-footer-side">
+                        <a href="#">4 <i class="far fa-question-circle qu"></i></a>
+                        <a href="#">Attend </a>
+                        <span class="rit">Jan 4th</span>
+                      </p>
+                    </div>
+                </div>
+                </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="./scripts/usr_dashboard.js"></script>
+  </body>
+</html>

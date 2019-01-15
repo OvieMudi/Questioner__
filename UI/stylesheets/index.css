@@ -1,0 +1,99 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+
+body{
+    background: #1f2833;
+}
+
+.nav-container{
+    width: 90%;
+    margin: 0 auto;
+}
+nav{
+    width: 100%;
+    overflow: hidden;
+    height:60px;
+    line-height:60px;
+    border-bottom: 2px solid #45A29E;
+}
+
+.icon{
+    font-size: 20px;
+    float: left;
+    color: white;
+    font-family:  lato, sans-serif;
+    font-style: oblique;
+}
+
+.menu{
+    float: right;
+}
+.menu li{
+    float: left;
+    width: 120px;
+    height: 60px;
+    line-height:60px;
+    text-align: center;
+    font-family:  lato, sans-serif;
+    text-transform: uppercase;
+    list-style: none; 
+}
+.menu li a{
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+.menu li:hover{
+    background: #45A29E;
+    
+}
+.menu li a:hover{
+    color: #1f2833; 
+    background: #45A29E;
+}
+
+section{
+    color: white;
+    width: 100%;
+}
+
+.content-container{
+    width: 60%;
+    margin: 10% auto 10% auto;
+    text-align: center;
+}
+
+.main-content{
+    font-size: 28px;
+    font-family:  lato, sans-serif;
+}
+.content-container a{
+    text-decoration: none;
+    margin-top: 10rem;
+    border: 1px solid #45A29E;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    text-transform: uppercase;
+    border-radius: 10px;
+}
+.content-container a:hover{
+    background: #45A29E;
+    border:1px solid white;
+    color: #1f2833;
+}
+span{
+    color:#45A29E;
+}
+
+.sub-content{
+    width: 58%;
+    font-size: 20px;
+    margin-left: 21%;
+    margin-left: 21%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}

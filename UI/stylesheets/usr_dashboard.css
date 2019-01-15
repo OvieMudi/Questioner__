@@ -1,3 +1,4 @@
+
 /* general styles */
 * {
   box-sizing: border-box;
@@ -18,11 +19,11 @@ body {
     "header header"
     "content	  content";
   grid-template-columns: 20vw;
-  grid-template-rows: 10vh 1fr;
+  grid-template-rows: 60px 1fr;
   height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+  font-family: lato, sans-serif;
   color: whitesmoke;
-  background-color: #607D8B;
+  background-color: #1f2833;
 }
 
 /* header bar styles */
@@ -31,23 +32,42 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #455A64;
+  background-color: #1f2833;
+  border-bottom: 2px solid #45A29E;
+  padding: 0 5%;
 
 }
-header .homelink {
-  margin-left: 20px;
+header .appicon {
+  font-size: 30px;
+  float: left;
+  color: white;
+  font-family:  lato, sans-serif;
+  font-style: oblique;
 
 }
-header nav {
+
+header ul {
   display: flex;
-  margin-right: 20px;
+  align-items: center;
+  /* margin-right: 20px; */
   padding: 0 10px;
+  text-transform: uppercase;
+  height: 100%;
+  margin: 0;
   
 }
+
 header li{
   padding: 0 20px;
   list-style: none;
-
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+li:hover{
+  background: #45A29E;
+  
 }
 
 
@@ -72,8 +92,7 @@ main .meetup-nav {
   background-color: #009688;
   color: #212121;
   font-size: 1.5em;
-  border-width: .5px;
-  border-radius: 5px;
+  border: transparent;
   letter-spacing: 2px;
   height: auto;
   margin-top: 5px;
@@ -95,7 +114,7 @@ main .meetup-nav {
 }
 
 main h2 {
-  color: #424141;
+  color: #b3afaf;
   font-size: 2em;
   margin: 0 20px;
 }
@@ -131,9 +150,11 @@ main .meetup {
 .meetup-info {
   display: flex;
   justify-content: space-between;
-  margin: 0 .5em 1px .5em;
+  margin: 0 .5em 3px .5em;
   font-size: 0.8em;
 }
+
+
 @media only screen and (max-width: 768px) {
   body {
     grid-template-areas:
@@ -142,7 +163,7 @@ main .meetup {
 
       grid-template-columns: 100vw;
       grid-template-rows:
-        auto /* Header */
+        inherit /* Header */
         1fr; /* Content */
     font-size: 0.8em;
   }

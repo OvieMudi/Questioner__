@@ -51,7 +51,7 @@ main {
 }
 
 .form button:hover{
-  background: rgb(25, 100, 161);
-  color: rgb(237, 241, 245);
+  background: #CFD8DC;
+  color: #424141;
   cursor: pointer;
 }
