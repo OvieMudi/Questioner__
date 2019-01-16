@@ -1,0 +1,11 @@
+@import "./meetup_page.css";
+
+div.respond {
+  display: flex;
+  justify-content: flex-end;
+}
+
+span.user {
+  display: flex;
+  align-items: center;
+}
