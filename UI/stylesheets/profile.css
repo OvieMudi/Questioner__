@@ -1,0 +1,31 @@
+@import "./adm_dashboard.css";
+
+main{
+  padding: 0 50px;
+  display: flex;
+  justify-content: center;
+}
+
+main .images-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: gray;
+  border-radius: 2px;
+  margin-top: 5px;
+}
+
+#image {
+  border-radius: 2px;
+}
+
+
+.avatar-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  background: grey;
+  padding: 0 50px;
+  margin-top: 5px;
+}

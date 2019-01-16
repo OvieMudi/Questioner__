@@ -1,0 +1,67 @@
+@import "./usr_dashboard.css";
+
+
+.meet_up {
+  display: flex;
+}
+
+.images_container {
+  display: flex;
+  justify-content: center;
+  height: 250px;
+}
+
+.img {
+  width: 50%;
+  height: auto;
+}
+
+section.ask_question {
+  display: flex;
+  justify-content: flex-end;
+}
+
+form {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+form textarea {
+  width: 80%;
+}
+form button {
+  width: 5em;
+  margin-top: 5px;
+}
+
+.question_container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.question {
+  background-color: #1f2833;
+  padding: 1%;
+  border-radius: 2px;
+}
+
+div.respond {
+  display: flex;
+  justify-content: space-between;
+}
+div.ratings {
+  display: flex;
+  align-items: center;
+}
+span.no_comments {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+span#no_comments {
+  padding: 0 5px;
+}
