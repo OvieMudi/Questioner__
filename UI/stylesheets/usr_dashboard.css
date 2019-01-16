@@ -21,7 +21,7 @@ body {
     "left-bar	  content right-bar";
   grid-template-columns: 20vw 1fr 20vw;
   grid-template-rows: 60px 1fr;
-  height: 100vh;
+  height: 100%;
   font-family: lato, sans-serif;
   color: whitesmoke;
   background-color: #1f2833;
@@ -222,15 +222,15 @@ section.segment {
   body {
     grid-template-areas:
       "header"
+      "left-bar"
       "content"
-      "aside"
-      "nav";
+      "right-bar";
 
       grid-template-columns: 100vw;
       grid-template-rows:
         inherit /* Header */
-        1fr /* Content */
         auto
+        1fr /* Content */
         auto;
     font-size: 0.8em;
   }
@@ -242,9 +242,11 @@ section.segment {
  
   aside {
     display: none;
+    margin: 20px;
   }
   nav {
     display: none;
+    margin: 0 20px;
   }
 
   section.segment {
