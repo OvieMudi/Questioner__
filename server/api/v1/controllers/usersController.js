@@ -16,7 +16,7 @@ class UsersController {
       const user = Users.createUser(req.body);
       currentUser = user;
       return res.status(201).json({
-        status: 201, data: [user],
+        status: 201, data: user,
       });
     } catch (error) {
       return res.status(400).json({
@@ -52,7 +52,7 @@ class UsersController {
       });
     }
     return res.status(200).json({
-      status: 200, data: [user],
+      status: 200, data: user,
     });
   }
 
@@ -71,7 +71,7 @@ class UsersController {
         });
       }
       return res.status(200).json({
-        status: 200, data: [modifiedUser],
+        status: 200, data: modifiedUser,
       });
     } catch (error) {
       return res.status(400).json({

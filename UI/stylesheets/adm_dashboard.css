@@ -1,0 +1,46 @@
+@import "./usr_dashboard.css";
+
+dialog {
+  background-color: #455A64;
+  color: inherit;
+  text-align: center;
+  border: none;
+  padding: 2rem;
+  border-radius: 6px;
+  width: 40%;
+}
+
+dialog input {
+  height: 2em;
+  margin: .5em;
+}
+
+dialog #submitBtn {
+  background-color: #607D8B;
+  border: none;
+  color: white;
+  font-size: 1.3em;
+  border-radius: 2px;
+}
+
+dialog form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 100%;
+}
+
+dialog form input {
+  width: 100%;
+}
+
+dialog #submitBtn {
+  align-self: center;
+  background-color: #009688;
+  color: #212121;
+  letter-spacing: 1px;
+}
+
+
+
+

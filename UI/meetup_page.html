@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Meetup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="./stylesheets/meetup_page.css"/>
+  </head>
+  <body>
+  <!------------ header -------------->
+  <header class="header">
+    <h3 class="appicon"><a href="./usr_dashboard.html">Questioner</a></h3>
+    <ul class="menu">
+      <li><a href="#">Support</a></li>
+      <li><a href="./profile.html">Profile</a></li>
+      <li><a href="#">Sign out</a></li>
+    </ul>
+  </header>
+
+  <main>
+    <section class="meet_up segment">
+      <h3>How to become a better developer</h3>
+      <div class="images_container">
+        <img class= "img" src="./assets/images/star-wars-trooper-mask-512.png" alt="meetup image">
+        <img class= "img" src="./assets/images/star-wars-trooper-mask-512.png" alt="meetup image">
+      </div>
+    </section>
+    <section class="ask_question segment">
+      <form action="#">
+        <h4>Ask your question</h4>
+        <textarea name="questionInput" id="questionInput" cols="30" rows="10"></textarea>
+        <button>submit</button>
+      </form>
+    </section>
+    <section class="question_container segment">
+      <div class="question">
+        <p>Ipsum Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed nam illo asperiores quos ducimus beatae?</p>
+        <a href="#"></a>
+        <div class="respond">
+          <div class="ratings">
+            <a href="#"><i class="material-icons">arrow_upward</i></a>
+            <span class="votes"><span id="vote">30</span> votes</span>
+            <a href="#"><i class="material-icons">arrow_downward</i> </a>
+          </div>
+          <span class="no_comments">
+            <a href="./question_page.html"><i class="material-icons">comment</i></a>
+            <span id="no_comments">23</span>
+          </span>
+          
+        </div>
+      </div>
+      
+    </section>
+  </main>
+    
+  <!---------------- left sidebar --------------------------->
+    <nav>
+      <section class="left-container segment">
+        <span class="username">
+          <span id="username">Ben Skywalker</span>
+          <span class="userIcon"><i class="material-icons">person_outline</i></span>
+        </span>
+        <div class="user_info">
+          <div><span>8</span> questions asked</div>
+          <div><span>23</span> comments posted</div>
+        </div>
+      </section>
+      
+    </nav>
+    
+    
+  <!---------------- right sidebar --------------------------->
+    <aside>
+      <section class="right-container segment">
+        <span class="feed-header">
+          <span>Top questions feed</span>
+          <span id="question-icon"><i class="material-icons">trending_up</i></span>
+        </span>
+        <div class="questions-feed">
+          <div class="question"><span>Ipsum lorem, this is a question to be answered </span></div>
+          <div><span>23</span> comments posted</div>
+        </div>
+      </section>
+      
+    </aside>
+    
+    <script src="./scripts/usr_dashboard.js"></script>
+  </body>
+</html>

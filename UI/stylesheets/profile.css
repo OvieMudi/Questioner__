@@ -1,0 +1,71 @@
+@import "./adm_dashboard.css";
+
+main{
+  padding: 0 50px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#image {
+  border-radius: 2px;
+}
+
+
+section.avatar-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  padding: 0 5px;
+  margin-top: 5px;
+  height: 500px;
+}
+.user-details {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  height: 100%;
+  font-size: .9em;
+}
+
+div.image {
+  width: 100%;
+}
+#image {
+  width: 100%;
+}
+
+.meetup {
+  height: 100px;
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+    grid-template-areas:
+      "header"
+      "left-bar"
+      "content"
+      "right-bar";
+
+      grid-template-columns: 100vw;
+      grid-template-rows:
+        inherit /* Header */
+        inherit /* Content */
+        1fr
+        inherit;
+    font-size: 0.8em;
+  }
+
+  main {
+    flex-wrap: wrap;
+  }
+
+  nav {
+    display: block;
+    grid-template-areas: nav;
+  }
+  aside {
+    display: block;
+    grid-template-areas: aside;
+  }
+}

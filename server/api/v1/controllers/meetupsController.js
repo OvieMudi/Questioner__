@@ -16,7 +16,7 @@ class MeetupsController {
       const meetup = Meetups.createMeetup(req.body);
       currentMeetup = meetup;
       return res.status(201).json({
-        status: 201, data: [meetup],
+        status: 201, data: meetup,
       });
     } catch (error) {
       return res.status(400).json({
@@ -65,7 +65,7 @@ class MeetupsController {
       });
     }
     return res.status(200).json({
-      status: 200, data: [meetup],
+      status: 200, data: meetup,
     });
   }
 
@@ -85,7 +85,7 @@ class MeetupsController {
       }
       currentMeetup = updatedMeetup;
       return res.status(200).json({
-        status: 200, data: [updatedMeetup],
+        status: 200, data: updatedMeetup,
       });
     } catch (error) {
       return res.status(400).json({
@@ -127,7 +127,7 @@ class MeetupsController {
       });
     }
     return res.status(201).json({
-      status: 201, data: [rsvp],
+      status: 201, data: rsvp,
     });
   }
 

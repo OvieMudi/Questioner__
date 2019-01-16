@@ -1,0 +1,259 @@
+
+/* general styles */
+* {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* body styles */
+body {
+  display: grid;
+  grid-template-areas: 
+    "header header header"
+    "left-bar	  content right-bar"
+    "left-bar	  content right-bar";
+  grid-template-columns: 20vw 1fr 20vw;
+  grid-template-rows: 60px 1fr;
+  height: 100%;
+  font-family: lato, sans-serif;
+  color: whitesmoke;
+  background-color: #1f2833;
+}
+
+/* header bar styles */
+header {
+  grid-area: header;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1f2833;
+  border-bottom: 2px solid #45A29E;
+  padding: 0 5%;
+
+}
+header .appicon {
+  font-size: 30px;
+  float: left;
+  color: white;
+  font-family:  lato, sans-serif;
+  font-style: oblique;
+
+}
+
+header ul {
+  display: flex;
+  align-items: center;
+  /* margin-right: 20px; */
+  padding: 0 10px;
+  text-transform: uppercase;
+  height: 100%;
+  margin: 0;
+  
+}
+
+header li{
+  padding: 0 20px;
+  list-style: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+li:hover{
+  background: #45A29E;
+  
+}
+
+
+/* main content styles */
+main {
+  grid-area: content;
+
+}
+
+main .main-container {
+  display: flex;
+  flex-direction: column;
+}
+
+main .meetup-nav {
+  display: flex;
+  justify-content: center;
+  border-radius: 3px;
+}
+
+button {
+  cursor: pointer;
+  background-color: #009688;
+  color: #212121;
+  font-size: 1.5em;
+  border: transparent;
+  border-radius: 2px;
+  letter-spacing: 2px;
+  height: auto;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin: 5px 1px 10px 1px;
+}
+
+button:hover {
+  color: #525151;
+  background: #CFD8DC;
+}
+
+.meetup-nav a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1px;
+}
+
+main h2 {
+  color: #b3afaf;
+  font-size: 2em;
+  margin: 0 20px;
+}
+
+main .meetups {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.meetups img {
+  height: 70%;
+  width: auto;
+}
+
+.meetup {
+  background: #455A64;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  height: 300px;
+  width: 300px;
+  margin: 10px;
+  border-radius: 2px;
+}
+
+.meetup h3 {
+  margin: 5px;
+  text-align: center;
+  font-size: 1em;
+}
+
+.meetup-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 .5em 3px .5em;
+  font-size: 0.8em;
+}
+
+nav {
+  grid-area: left-bar;
+}
+nav section {
+  height: 120px;
+  background: #455A64;
+  padding: 10px;
+  margin-left: 20px;
+  margin-top: 5px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  
+}
+
+nav .username {
+  display: flex;
+  font-size: 20px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+}
+
+nav .user_info {
+  font-size: 15px;
+}
+
+aside {
+  grid-area: right-bar;
+}
+section.segment {
+  min-height: 150px;
+  background: #455A64;
+  padding: 10px;
+  margin-top: 5px;
+  margin-right: 20px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  
+}
+
+.feed-header {
+  display: flex;
+  font-size: 20px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+}
+
+.questions-feed {
+  font-size: 12px;
+  border-top: 1px solid #1f2833;
+}
+.question {
+  margin-bottom: 5px;
+  font-size: 15px;
+  min-width: 90%;
+}
+
+
+@media only screen and (max-width: 768px) {
+  body {
+    grid-template-areas:
+      "header"
+      "left-bar"
+      "content"
+      "right-bar";
+
+      grid-template-columns: 100vw;
+      grid-template-rows:
+        inherit /* Header */
+        auto
+        1fr /* Content */
+        auto;
+    font-size: 0.8em;
+  }
+  
+  header li{
+    padding: 0 5px;
+    font-size: 0.8em;
+  }
+ 
+  aside {
+    display: none;
+    margin: 20px;
+  }
+  nav {
+    display: none;
+    margin: 0 20px;
+  }
+
+  section.segment {
+    margin: 0;
+  }
+
+  dialog {
+    width: auto;
+  }
+}
