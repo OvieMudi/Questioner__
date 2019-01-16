@@ -250,4 +250,8 @@ section.segment {
   section.segment {
     margin: 0;
   }
+
+  dialog {
+    width: auto;
+  }
 }
