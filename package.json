@@ -10,7 +10,7 @@
     "babel-build": "babel ./ -d dist --ignore node_modules",
     "clean-build": "rm -rf dist",
     "serve": "SET NODE_ENV=dev && node ./dist/app.js",
-    "test": "mocha ./test --compilers js:@babel/register --recursive --exit",
+    "test": "mocha ./server/test --compilers js:@babel/register --recursive --exit",
     "test-coverage": "cross-env NODE_ENV=test nyc mocha --exit",
     "report-coverage": "nyc report --reporter=text-lcov | coveralls"
   },
