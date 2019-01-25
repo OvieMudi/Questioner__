@@ -1,8 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import usersRouter from './api/v1/routes/users';
-import meetupsRouter from './api/v1/routes/meetups';
-import questionsRouter from './api/v1/routes/questions';
+import usersRouter from './server/api/v1/routes/users';
+import meetupsRouter from './server/api/v1/routes/meetups';
+import questionsRouter from './server/api/v1/routes/questions';
 
 const app = express();
 const port = process.env.PORT || 3000;
