@@ -8,7 +8,7 @@
     "start": "npm run build && node ./dist/app.js",
     "build": "npm run clean && npm run build-babel",
     "build-babel": "babel -d dist ./ --ignore ./node_modules,./UI",
-    "clean": "rm -rf dist",
+    "clean": "rimraf ./dist",
     "serve": "SET NODE_ENV=dev && node ./dist/app.js",
     "test": "mocha ./server/test --compilers js:@babel/register --recursive --exit",
     "test-coverage": "cross-env NODE_ENV=test nyc mocha --exit",
@@ -59,7 +59,8 @@
     "make-runnable": "^1.3.6",
     "mocha": "^5.2.0",
     "mocha-lcov-reporter": "^1.3.0",
-    "nyc": "^13.1.0"
+    "nyc": "^13.1.0",
+    "rimraf": "^2.6.3"
   },
   "nyc": {
     "require": [
