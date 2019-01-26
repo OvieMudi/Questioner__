@@ -5,11 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start-local": "nodemon --exec babel-node ./app.js",
-    "start": "npm run build && node ./dist/app.js",
-    "build": "npm run clean && npm run build-babel",
-    "build-babel": "babel -d dist ./ --ignore ./node_modules,./UI,./db.js",
-    "clean": "rimraf ./dist",
-    "serve": "SET NODE_ENV=dev && node ./dist/app.js",
+    "start": "babel-node ./app.js",
     "test": "mocha ./server/test --compilers js:@babel/register --recursive --exit",
     "test-coverage": "cross-env NODE_ENV=test nyc mocha --exit",
     "report-coverage": "nyc report --reporter=text-lcov | coveralls",
