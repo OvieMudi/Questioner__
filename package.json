@@ -4,8 +4,8 @@
   "description": "Crowd-source questions for a scheduled meetup",
   "main": "app.js",
   "scripts": {
-    "start-local": "nodemon --exec babel-node ./app.js",
-    "start": "npm run build && node ./dist/app.js",
+    "start-local": "node --exec babel-node ./app.js",
+    "start": "babel-node ./app.js",
     "build": "npm run clean-build && npm run babel-build",
     "babel-build": "babel ./ -d dist --ignore node_modules",
     "clean-build": "rm -rf dist",
