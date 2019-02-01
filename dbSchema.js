@@ -28,17 +28,17 @@ const database = {
         "firstname" VARCHAR(128) NOT NULL,
         "lastname" VARCHAR(128) NOT NULL,
         "othername" VARCHAR(128),
-        "email" VARCHAR(128) NOT NULL,
-        "username" VARCHAR(128) NOT NULL,
-        "phoneNumber" VARCHAR(128) NOT NULL,
-        "registered" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-        "isAdmin" BOOLEAN NOT NULL
+        "email" VARCHAR(128) UNIQUE NOT NULL,
+        "username" VARCHAR(128) UNIQUE NOT NULL,
+        "phoneNumber" VARCHAR(128) UNIQUE NOT NULL,
+        "registered" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
+        "isAdmin" BOOLEAN DEFAULT false NOT NULL
       );
     
     CREATE TABLE IF NOT EXISTS
       meetups(
         "id" SERIAL PRIMARY KEY,
-        "createdOn" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+        "createdOn" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
         "location" VARCHAR(128) NOT NULL,
         "images" TEXT[],
         "topic" VARCHAR(128) NOT NULL,
@@ -79,11 +79,11 @@ const database = {
     const queryCommand = `
       INSERT INTO users(
       firstname, lastname, othername, email, "phoneNumber", username, "isAdmin"
-      ) VALUES('Anakin', 'Skywalker', 'Ani', 'anakinskywalker@republic.com', 123123123, 'Skywalker', true
+      ) VALUES('Anakin', 'Skywalker', 'Ani', 'anakinskywalker@republic.com', 123123123, 'Skywalkerr', true
       );
       INSERT INTO users(
-      firstname, lastname, othername, email, "phoneNumber", username, "isAdmin"
-        ) VALUES('Bobba', 'Fet', 'Lucky', 'bobbafet@republic.com', 122122122, 'bobba', false
+      firstname, lastname, othername, email, "phoneNumber", username
+        ) VALUES('Bobba', 'Fet', 'Lucky', 'bobbafet@republic.com', '122122122', 'bobba'
       );
       
       INSERT INTO meetups(

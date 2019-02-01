@@ -1,24 +1,20 @@
+/* eslint-disable no-console */
 import express from 'express';
 import bodyParser from 'body-parser';
-import usersRouter from './server/api/v1/routes/users';
-import meetupsRouter from './server/api/v1/routes/meetups';
-import questionsRouter from './server/api/v1/routes/questions';
+import apiRouter from './server/api/apiRoutes';
 
 const app = express();
 const port = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use(bodyParser.text());
-app.use('/api/v1/users', usersRouter);
-app.use('/api/v1/meetups', meetupsRouter);
-app.use('/api/v1/questions', questionsRouter);
+app.use('/api/v1', apiRouter);
 
-app.get('/', (req, res) => {
-  res.send('WELCOME TO QUESTIONER! Please explore the api routes!');
-});
+
+app.get('/', (req, res) => res.status(200)
+  .send('<h1>WELCOME TO QUESTIONER!</h1> Please explore the api routes!'));
 
 app.listen(port, () => {
-  // eslint-disable-next-line no-console
   console.log(`I'M LIVE ON PORT ${port}`);
 });
 

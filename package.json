@@ -6,10 +6,10 @@
   "scripts": {
     "start-local": "nodemon --exec babel-node ./app.js",
     "start": "babel-node ./app.js",
-    "test": "mocha ./server/test --compilers js:@babel/register --recursive --exit",
-    "test-coverage": "cross-env NODE_ENV=test nyc mocha --exit",
+    "test": "set NODE_ENV=test && mocha ./server/test --compilers js:@babel/register --recursive --exit",
+    "test-coverage": "cross-env NODE_ENV=test nyc mocha ./server/test --recursive --exit",
     "report-coverage": "nyc report --reporter=text-lcov | coveralls",
-    "seedDB": "babel-node ./db.js"
+    "seedDB": "babel-node ./dbSchema.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
     "dialog-polyfill": "^0.4.10",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "moment": "^2.24.0",
     "nodemon": "^1.18.9",
     "pg": "^7.8.0"
   },
