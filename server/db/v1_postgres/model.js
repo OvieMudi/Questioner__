@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import pool from './dbPool';
+import pool from './dbConnection';
 import dbErrorMessage from './dbErrorMessage';
 
 class Database {

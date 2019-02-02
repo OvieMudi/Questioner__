@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 import { Pool } from 'pg';
 import { config } from 'dotenv';
+import { DB_URL } from './dbConnection';
 
 config();
-const DB_URL = process.env.DATABASE_URL;
 
 const database = {
   pool: new Pool({

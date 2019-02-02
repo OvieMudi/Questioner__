@@ -22,7 +22,6 @@ describe('POST /api/v1/meetups', () => {
     .type('form')
     .send(data)
     .then((res) => {
-      console.log(res.body);
       const body = res.body.data;
       // eslint-disable-next-line prefer-destructuring
       id = body.id;
