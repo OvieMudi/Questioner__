@@ -76,6 +76,7 @@ class MeetupsModel extends DatabaseModel {
       const { rows } = await this.queryDB(queryString);
       return rows;
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error(err);
       throw this.dbErrorMessage(err);
     }

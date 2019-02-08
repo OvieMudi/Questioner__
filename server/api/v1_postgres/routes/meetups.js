@@ -17,8 +17,8 @@ Router.route('/:id/rsvps')
   .post(validator.validateRsvps, meetupsController.createRsvp)
   .get(meetupsController.getAllRsvps);
 
-Router.route('/:id/rsvps/:id')
-  .patch(validator.validateRsvps, meetupsController.update);
+/* Router.route('/:id/rsvps/:id')
+  .patch(validator.validateRsvps, meetupsController.update); */
 
 
 export default Router;

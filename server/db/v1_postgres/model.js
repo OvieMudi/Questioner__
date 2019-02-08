@@ -4,7 +4,7 @@ import pool from './dbConnection';
 import dbErrorMessage from './dbErrorMessage';
 import formatToArray from '../../api/v1_postgres/helpers/stringToPsqlArray';
 
-class Database {
+class DatabaseModel {
   constructor(tableName = '') {
     this._tableName = tableName;
     this.queryDB = pool.queryDB;
@@ -73,4 +73,4 @@ class Database {
   }
 }
 
-export default Database;
+export default DatabaseModel;

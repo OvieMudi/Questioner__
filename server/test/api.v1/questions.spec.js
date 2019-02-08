@@ -7,7 +7,6 @@ chai.use(chaiHttp);
 const data = {
   title: 'Should we bring our weapons?',
   body: "Just saying... Since we're a group that hate each other.",
-  meetup: 11223344,
 };
 let id;
 
@@ -81,7 +80,7 @@ describe('PATCH /api/v1/questions/:id', () => {
     }));
 });
 
-describe('PATCH /api/v1/questions/:id', () => {
+describe('PATCH /api/v1/questions/:id/upvote', () => {
   it('should increase question votes by 1', () => chai.request(server)
     .patch(`/api/v1/questions/${id}/upvote`)
     .then((res) => {
@@ -90,7 +89,7 @@ describe('PATCH /api/v1/questions/:id', () => {
     }));
 });
 
-describe('PATCH /api/v1/questions/:id', () => {
+describe('PATCH /api/v1/questions/:id/downvote', () => {
   it('should decrease question votes by 1', () => chai.request(server)
     .patch(`/api/v1/questions/${id}/downvote`)
     .then((res) => {

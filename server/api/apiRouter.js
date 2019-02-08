@@ -3,17 +3,18 @@ import app from 'express';
 // ===== Data Structure Routes (DS) ====
 // import usersRoutesDS from './v1/routes/users';
 // import meetupsRoutesDS from './v1/routes/meetups';
-import questionsRoutesDS from './v1/routes/questions';
+// import questionsRoutesDS from './v1/routes/questions';
 
 // Postgres Database Routes
 import usersRoute from './v1_postgres/routes/users';
 import meetupsRoute from './v1_postgres/routes/meetups';
+import questionsRoute from './v1_postgres/routes/questions';
 
 const Router = app.Router();
 
 Router.use('/users', usersRoute);
 Router.use('/meetups', meetupsRoute);
-Router.use('/questions', questionsRoutesDS);
+Router.use('/questions', questionsRoute);
 
 
 Router.get('/', (req, res) => res.status(200).json({

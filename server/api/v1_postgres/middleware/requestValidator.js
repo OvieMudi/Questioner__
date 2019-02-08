@@ -9,6 +9,7 @@ const validator = {
     };
     joi.validate(req.body, authSchema, validationOptions, (err, data) => {
       if (err) {
+        // eslint-disable-next-line no-console
         console.error(err.message);
         const property = err.details[0].path;
         const message = `Invalid ${property}. Please review and try again`;

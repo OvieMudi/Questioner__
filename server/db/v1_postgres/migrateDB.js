@@ -48,11 +48,12 @@ const database = {
 
       CREATE TABLE IF NOT EXISTS questions (
         "id" SERIAL PRIMARY KEY,
-        "createdBy" INT NOT NULL,
-        "meetup" INT NOT NULL,
-        "authorName" varchar(60) NOT NULL,
+        "createdBy" INT NOT NULL DEFAULT 1,
+        "meetup" INT NOT NULL DEFAULT 2,
+        "authorName" varchar(60) NOT NULL DEFAULT 'skywalker',
         "title" varchar(100) NOT NULL,
         "body" varchar(1000) NOT NULL,
+        "votes" INT DEFAULT 0,
         "upVoters" TEXT[],
         "downVoters" TEXT[],
         "createdOn" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
