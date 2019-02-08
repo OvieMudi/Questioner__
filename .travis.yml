@@ -3,6 +3,10 @@ node_js:
   - "node"
   - "8.0.0"
   - "6.0.0"
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database questionerDB_test;' -U postgres
 after_success:
   - npm run test-coverage
   - npm run report-coverage

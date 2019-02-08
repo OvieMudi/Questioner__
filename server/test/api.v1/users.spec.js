@@ -11,7 +11,7 @@ const data = {
   othername: 'Vaderson',
   email: 'luke@oldrepublic.com',
   phoneNumber: '00661234567',
-  username: 'skywalker',
+  username: 'Skywalker',
 };
 let id;
 
@@ -26,9 +26,9 @@ describe('POST /api/v1/users', () => {
       expect(res).to.have.status(201);
       const body = res.body.data;
       expect(body).to.have.property('id');
-      expect(body).to.have.property('firstname').eql('Luke');
-      expect(body).to.have.property('lastname').eql('Skywalker');
-      expect(body).to.have.property('othername').eql('Vaderson');
+      expect(body).to.have.property('firstname').eql('luke');
+      expect(body).to.have.property('lastname').eql('skywalker');
+      expect(body).to.have.property('othername').eql('vaderson');
       expect(body).to.have.property('email').eql('luke@oldrepublic.com');
       expect(body).to.have.property('phoneNumber').eql('00661234567');
       expect(body).to.have.property('username').eql('skywalker');
@@ -36,6 +36,7 @@ describe('POST /api/v1/users', () => {
       expect(body).to.have.property('isAdmin').that.is.a('boolean');
     }));
 });
+
 describe('GET /api/v1/users', () => {
   it('should get all Users in db', () => chai.request(server)
     .get('/api/v1/users')
@@ -52,6 +53,7 @@ describe('GET /api/v1/users', () => {
       expect(res.body.data[0]).to.have.property('isAdmin');
     }));
 });
+
 describe('GET /api/v1/users/:id', () => {
   it('should get information of a User from db', () => chai.request(server)
     .get(`/api/v1/users/${id}`)
@@ -72,21 +74,22 @@ describe('GET /api/v1/users/:id', () => {
     .get('/api/v1/users/_INVALID_ID_')
     .then((res) => {
       expect(res).to.have.status(404);
-      expect(res.body).to.have.property('message').eql('user does not exist');
+      expect(res.body).to.have.property('error').eql('user does not exist');
     }));
 });
-describe('Patch /api/v1/users', () => {
+
+describe('Patch /api/v1/users/:id', () => {
   it('should update a User record in db', () => chai.request(server)
     .patch(`/api/v1/users/${id}`)
     .type('form')
-    .send({ othername: 'Last Jedi Master' })
+    .send({ othername: 'LastJediMaster' })
     .then((res) => {
       const body = res.body.data;
       expect(res).to.have.status(200);
       expect(body).to.have.property('id');
       expect(body).to.have.property('firstname');
       expect(body).to.have.property('lastname');
-      expect(body).to.have.property('othername').eql('Last Jedi Master');
+      expect(body).to.have.property('othername').eql('lastjedimaster');
       expect(body).to.have.property('email');
       expect(body).to.have.property('phoneNumber');
       expect(body).to.have.property('username');
@@ -94,12 +97,13 @@ describe('Patch /api/v1/users', () => {
       expect(body).to.have.property('isAdmin');
     }));
 });
+
 describe('DELETE /api/v1/users/:id', () => {
-  it('should update User information', () => chai.request(server)
+  it('should delete User information', () => chai.request(server)
     .delete(`/api/v1/users/${id}`)
     .then((res) => {
       expect(res).to.have.status(200);
-      expect(res.body.message).to.eql('user deleted');
+      expect(res.body.data).to.eql('user deleted');
     }));
   it('should not find deleted data', () => chai.request(server)
     .delete(`/api/v1/users/${id}`)

@@ -4,12 +4,12 @@
   "description": "Crowd-source questions for a scheduled meetup",
   "main": "app.js",
   "scripts": {
-    "start-local": "nodemon --exec babel-node ./app.js",
+    "start-local": "cross-env NODE_ENV='development' nodemon --exec babel-node ./app.js",
     "start": "babel-node ./app.js",
-    "test": "mocha ./server/test --compilers js:@babel/register --recursive --exit",
-    "test-coverage": "cross-env NODE_ENV=test nyc mocha --exit",
+    "test": "cross-env NODE_ENV='test' npm run migrate&& cross-env NODE_ENV='test' mocha ./server/test --compilers js:@babel/register --recursive --timeout 3000 --exit",
+    "test-coverage": "cross-env NODE_ENV='test' nyc mocha ./server/test --recursive --exit",
     "report-coverage": "nyc report --reporter=text-lcov | coveralls",
-    "seedDB": "babel-node ./db.js"
+    "migrate": "babel-node ./server/db/v1_postgres/migrateDB"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,8 @@
     "dialog-polyfill": "^0.4.10",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "joi": "^14.3.1",
+    "moment": "^2.24.0",
     "nodemon": "^1.18.9",
     "pg": "^7.8.0"
   },

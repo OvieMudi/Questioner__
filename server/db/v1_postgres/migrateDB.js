@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 import { Pool } from 'pg';
 import { config } from 'dotenv';
+import { DB_URL } from './dbConnection';
 
 config();
-const DB_URL = process.env.DATABASE_URL;
 
 const database = {
   pool: new Pool({
@@ -28,17 +28,17 @@ const database = {
         "firstname" VARCHAR(128) NOT NULL,
         "lastname" VARCHAR(128) NOT NULL,
         "othername" VARCHAR(128),
-        "email" VARCHAR(128) NOT NULL,
-        "username" VARCHAR(128) NOT NULL,
-        "phoneNumber" VARCHAR(128) NOT NULL,
-        "registered" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-        "isAdmin" BOOLEAN NOT NULL
+        "email" VARCHAR(128) UNIQUE NOT NULL,
+        "username" VARCHAR(128) UNIQUE NOT NULL,
+        "phoneNumber" VARCHAR(128) UNIQUE NOT NULL,
+        "registered" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
+        "isAdmin" BOOLEAN DEFAULT false NOT NULL
       );
     
     CREATE TABLE IF NOT EXISTS
       meetups(
         "id" SERIAL PRIMARY KEY,
-        "createdOn" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+        "createdOn" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
         "location" VARCHAR(128) NOT NULL,
         "images" TEXT[],
         "topic" VARCHAR(128) NOT NULL,
@@ -48,11 +48,12 @@ const database = {
 
       CREATE TABLE IF NOT EXISTS questions (
         "id" SERIAL PRIMARY KEY,
-        "createdBy" INT NOT NULL,
-        "meetup" INT NOT NULL,
-        "authorName" varchar(60) NOT NULL,
+        "createdBy" INT NOT NULL DEFAULT 1,
+        "meetup" INT NOT NULL DEFAULT 2,
+        "authorName" varchar(60) NOT NULL DEFAULT 'skywalker',
         "title" varchar(100) NOT NULL,
         "body" varchar(1000) NOT NULL,
+        "votes" INT DEFAULT 0,
         "upVoters" TEXT[],
         "downVoters" TEXT[],
         "createdOn" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
@@ -79,11 +80,11 @@ const database = {
     const queryCommand = `
       INSERT INTO users(
       firstname, lastname, othername, email, "phoneNumber", username, "isAdmin"
-      ) VALUES('Anakin', 'Skywalker', 'Ani', 'anakinskywalker@republic.com', 123123123, 'Skywalker', true
+      ) VALUES('Anakin', 'Skywalker', 'Ani', 'anakinskywalker@republic.com', 123123123, 'Skywalkerr', true
       );
       INSERT INTO users(
-      firstname, lastname, othername, email, "phoneNumber", username, "isAdmin"
-        ) VALUES('Bobba', 'Fet', 'Lucky', 'bobbafet@republic.com', 122122122, 'bobba', false
+      firstname, lastname, othername, email, "phoneNumber", username
+        ) VALUES('Bobba', 'Fet', 'Lucky', 'bobbafet@republic.com', '122122122', 'bobba'
       );
       
       INSERT INTO meetups(
