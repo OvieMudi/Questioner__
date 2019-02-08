@@ -9,7 +9,7 @@ const dbENV = {
   production: '',
 };
 const nodeENV = process.env.NODE_ENV;
-const DB_URL = dbENV[nodeENV];
+const DB_URL = dbENV[nodeENV || 'development'];
 
 const pool = new Pool({
   connectionString: DB_URL,

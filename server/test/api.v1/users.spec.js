@@ -82,14 +82,14 @@ describe('Patch /api/v1/users/:id', () => {
   it('should update a User record in db', () => chai.request(server)
     .patch(`/api/v1/users/${id}`)
     .type('form')
-    .send({ othername: 'Last Jedi Master' })
+    .send({ othername: 'LastJediMaster' })
     .then((res) => {
       const body = res.body.data;
       expect(res).to.have.status(200);
       expect(body).to.have.property('id');
       expect(body).to.have.property('firstname');
       expect(body).to.have.property('lastname');
-      expect(body).to.have.property('othername').eql('last jedi master');
+      expect(body).to.have.property('othername').eql('lastjedimaster');
       expect(body).to.have.property('email');
       expect(body).to.have.property('phoneNumber');
       expect(body).to.have.property('username');
@@ -99,11 +99,11 @@ describe('Patch /api/v1/users/:id', () => {
 });
 
 describe('DELETE /api/v1/users/:id', () => {
-  it('should update User information', () => chai.request(server)
+  it('should delete User information', () => chai.request(server)
     .delete(`/api/v1/users/${id}`)
     .then((res) => {
       expect(res).to.have.status(200);
-      expect(res.body.message).to.eql('user deleted');
+      expect(res.body.data).to.eql('user deleted');
     }));
   it('should not find deleted data', () => chai.request(server)
     .delete(`/api/v1/users/${id}`)

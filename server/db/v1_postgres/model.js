@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
+/* eslint no-param-reassign: ["error", { "props": false }] */
 import pool from './dbConnection';
 import dbErrorMessage from './dbErrorMessage';
+import formatToArray from '../../api/v1_postgres/helpers/stringToPsqlArray';
 
 class Database {
   constructor(tableName = '') {
@@ -14,6 +16,9 @@ class Database {
     let templates = '';
     const values = [];
     Object.keys(reqBody).forEach((propName, idx) => {
+      if (propName === 'images' || propName === 'tags') {
+        reqBody[propName] = formatToArray(reqBody[propName]);
+      }
       columns += idx > 0 ? `, "${propName}"` : `"${propName}"`;
       templates += idx > 0 ? `, $${idx + 1}` : `$${idx + 1}`;
       values.push(reqBody[propName].toString().toLowerCase());
@@ -26,8 +31,7 @@ class Database {
       return rows[0];
     } catch (err) {
       console.log(err);
-      if (err.code === '23505') throw this.dbErrorMessage(err);
-      throw this.dbErrorMessage();
+      throw this.dbErrorMessage(err);
     }
   }
 

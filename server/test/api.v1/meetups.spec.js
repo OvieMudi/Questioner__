@@ -7,10 +7,10 @@ chai.use(chaiHttp);
 
 const data = {
   location: 'Outer Rim',
-  images: ['http://image1.jpg', 'http://image2.jpg'],
+  images: 'http://image1.jpg, http://image2.jpg',
   topic: 'The New Threat ',
   happeningOn: '2019/01/07-11:00',
-  tags: ['jedi', 'sith'],
+  tags: 'jedi, sith',
 };
 
 let id;
@@ -62,9 +62,9 @@ describe('GET /api/v1/meetups', () => {
 });
 
 
-describe('GET /api/v1/meetups/upcoming', () => {
+describe('GET /api/v1/meetups/?scope=upcoming', () => {
   it('should get all upcoming meetups in db', () => chai.request(server)
-    .get('/api/v1/meetups/upcoming')
+    .get('/api/v1/meetups/?scope=upcoming')
     .then((res) => {
       expect(res).to.have.status(200);
       expect(res.body.data[0]).to.have.property('id');
@@ -129,7 +129,7 @@ describe('DELETE /api/v1/meetups/:id', () => {
     .delete(`/api/v1/meetups/${id}`)
     .then((res) => {
       expect(res).to.have.status(200);
-      expect(res.body.message).to.eql('meetup deleted');
+      expect(res.body.data).to.eql('meetup deleted');
     }));
 
   it('should return error for invalid/deleted data', () => chai.request(server)

@@ -5,11 +5,11 @@ import server from '../../../app';
 chai.use(chaiHttp);
 
 const meetupData = {
-  location: 'Outer Rim',
-  images: ['http://image1.jpg', 'http://image2.jpg'],
-  topic: 'The New Threat',
+  location: 'Naboo',
+  images: 'http://image1.jpg, http://image2.jpg',
+  topic: 'The Blue Virus',
   happeningOn: '2019/01/07-11:00',
-  tags: ['jedi', 'sith'],
+  tags: 'Ecosystem, Preservation',
 };
 let id;
 
@@ -50,5 +50,6 @@ describe('GET /api/v1/meetups/:id/rsvps', () => {
     .get(`/api/v1/meetups/${id}/rsvps`)
     .then((res) => {
       expect(res).to.have.status(200);
+      expect(res.body.data[0]).to.have.property('meetup');
     }));
 });
