@@ -30,16 +30,25 @@ class QuestionsModel extends Model {
     const foundQuestion = await this.getOne(idString);
     if (!foundQuestion) return null;
 
-    let { votes } = foundQuestion;
-    votes += 1;
+    let questionVotes = foundQuestion.votes;
+    questionVotes += 1;
 
     const queryString = `UPDATE questions
-      SET votes=${votes}
+      SET votes=${questionVotes}
       RETURNING *;`;
 
     try {
       const { rows } = await this.queryDB(queryString);
-      return rows[0];
+      const {
+        id, title, body, votes,
+      } = rows[0];
+
+      return {
+        meetup: id,
+        title,
+        body,
+        votes,
+      };
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error(err);
@@ -51,16 +60,25 @@ class QuestionsModel extends Model {
     const foundQuestion = await this.getOne(idString);
     if (!foundQuestion) return null;
 
-    let { votes } = foundQuestion;
-    votes -= 1;
+    let questionVotes = foundQuestion.votes;
+    questionVotes -= 1;
 
     const queryString = `UPDATE questions
-      SET votes=${votes}
+      SET votes=${questionVotes}
       RETURNING *;`;
 
     try {
       const { rows } = await this.queryDB(queryString);
-      return rows[0];
+      const {
+        id, title, body, votes,
+      } = rows[0];
+
+      return {
+        meetup: id,
+        title,
+        body,
+        votes,
+      };
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error(err);

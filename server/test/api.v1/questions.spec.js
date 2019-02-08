@@ -66,7 +66,7 @@ describe('PATCH /api/v1/questions/:id', () => {
   it('should update a question in db using id', () => chai.request(server)
     .patch(`/api/v1/questions/${id}`)
     .type('form')
-    .send({ title: 'How to kill Vader', body: '' })
+    .send({ title: 'How to kill Vader' })
     .then((res) => {
       const body = res.body.data;
       expect(res).to.have.status(200);
