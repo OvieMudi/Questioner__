@@ -1,15 +1,16 @@
 import app from 'express';
 import questionsController from '../controllers/questionsController';
+import validator from '../middleware/requestValidator';
 
 const Router = app.Router();
 
 Router.route('/')
-  .post(questionsController.create)
+  .post(validator.validateQuestions, questionsController.create)
   .get(questionsController.getAll);
 
 Router.route('/:id')
   .get(questionsController.getOne)
-  .patch(questionsController.update)
+  .patch(validator.validateQuestions, questionsController.update)
   .delete(questionsController.delete);
 
 Router.route('/:id/upvote')

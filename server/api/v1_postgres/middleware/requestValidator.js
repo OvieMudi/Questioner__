@@ -22,7 +22,6 @@ const validator = {
   },
 
   validateAuth(req, res, next) {
-    let userObject;
     const genericName = joi.string().min(2).max(20).regex(/^[a-zA-Z]+$/)
       .trim();
     const userParams = {
@@ -36,6 +35,7 @@ const validator = {
         .max(14),
     };
     const patchRoute = req.route.stack.find(stack => stack.method === 'patch');
+    let userObject;
     if (patchRoute) {
       userObject = userParams;
     } else {
@@ -52,7 +52,6 @@ const validator = {
   },
 
   validateMeetups(req, res, next) {
-    let meetupObject;
     const meetupParams = {
       location: joi.string().min(3).max(50),
       images: joi.string().min(10),
@@ -61,6 +60,7 @@ const validator = {
       tags: joi.string().min(2),
     };
     const patchRoute = req.route.stack.find(stack => stack.method === 'patch');
+    let meetupObject;
     if (patchRoute) {
       meetupObject = meetupParams;
     } else {
@@ -80,6 +80,24 @@ const validator = {
       response: joi.string().valid(['yes', 'no', 'maybe']).lowercase().required(),
     };
     validator.joiValidate(rsvpObject, req, res, next);
+  },
+
+  validateQuestions(req, res, next) {
+    const questionParams = {
+      title: joi.string().min(3).max(100),
+      body: joi.string().min(3).max(1000),
+    };
+    const patchRoute = req.route.stack.find(stack => stack.method === 'patch');
+    let questionObject;
+    if (patchRoute) {
+      questionObject = questionParams;
+    } else {
+      questionObject = {
+        title: questionParams.title.required(),
+        body: questionParams.body.required(),
+      };
+    }
+    validator.joiValidate(questionObject, req, res, next);
   },
 };
 
