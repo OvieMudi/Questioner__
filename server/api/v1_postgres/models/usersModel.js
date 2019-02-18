@@ -6,7 +6,15 @@ class UsersModel extends Database {
     super(tableName);
   }
 
-  async update(idString, reqBody) {
+  // async createUser(reqBody = {}) {
+  //   const { columns, templates, values } = this.createEntries(reqBody);
+  //   const createUserQuery = `INSERT INTO users(${columns})
+  //     VALUES(${templates})
+  //     RETURNING ''
+  //   `;
+  // }
+
+  async updateUser(idString, reqBody) {
     const foundUser = await this.getOne(idString);
     if (!foundUser) return null;
     const queryString = `UPDATE users

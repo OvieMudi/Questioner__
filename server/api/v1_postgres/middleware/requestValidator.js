@@ -22,17 +22,19 @@ const validator = {
   },
 
   validateAuth(req, res, next) {
-    const genericName = joi.string().min(2).max(20).regex(/^[a-zA-Z]+$/)
-      .trim();
+    const genericName = joi.string().trim().min(2).max(20)
+      .regex(/^[a-zA-Z]+$/);
     const userParams = {
       firstname: genericName,
       lastname: genericName,
       othername: genericName,
       email: joi.string().email({ minDomainAtoms: 2 }),
-      username: joi.string().regex(/^[a-zA-Z0-9]+$/).trim(),
-      phoneNumber: joi.string().regex(/^[0-9]+$/).trim()
+      username: joi.string().trim().regex(/^[a-zA-Z0-9]+$/),
+      phoneNumber: joi.string().trim().regex(/^[0-9]+$/)
         .min(10)
         .max(14),
+      password: joi.string().trim().min(6).max(32)
+        .regex(/^\w+$/),
     };
     const patchRoute = req.route.stack.find(stack => stack.method === 'patch');
     let userObject;
@@ -46,6 +48,7 @@ const validator = {
         email: userParams.email.required(),
         username: userParams.username.required(),
         phoneNumber: userParams.phoneNumber.required(),
+        password: userParams.password.required(),
       };
     }
     validator.joiValidate(userObject, req, res, next);

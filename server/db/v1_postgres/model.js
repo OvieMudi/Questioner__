@@ -2,7 +2,7 @@
 /* eslint no-param-reassign: ["error", { "props": false }] */
 import pool from './dbConnection';
 import dbErrorMessage from './dbErrorMessage';
-import formatToArray from '../../api/v1_postgres/helpers/stringToPsqlArray';
+import authHelper from '../../api/v1_postgres/helpers/authHelper';
 
 class DatabaseModel {
   constructor(tableName = '') {
@@ -12,17 +12,7 @@ class DatabaseModel {
   }
 
   async create(reqBody = {}) {
-    let columns = '';
-    let templates = '';
-    const values = [];
-    Object.keys(reqBody).forEach((propName, idx) => {
-      if (propName === 'images' || propName === 'tags') {
-        reqBody[propName] = formatToArray(reqBody[propName]);
-      }
-      columns += idx > 0 ? `, "${propName}"` : `"${propName}"`;
-      templates += idx > 0 ? `, $${idx + 1}` : `$${idx + 1}`;
-      values.push(reqBody[propName].toString().toLowerCase());
-    });
+    const { columns, templates, values } = this.createEntries(reqBody);
     const queryString = `INSERT INTO ${this._tableName}(${columns})
       VALUES(${templates}) RETURNING *;`;
 
@@ -33,6 +23,22 @@ class DatabaseModel {
       console.log(err);
       throw this.dbErrorMessage(err);
     }
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  createEntries(reqBody) {
+    let columns = '';
+    let templates = '';
+    const values = [];
+    Object.keys(reqBody).forEach((propName, idx) => {
+      if (propName === 'password') {
+        reqBody.password = authHelper.hashPassword(reqBody.password);
+      }
+      columns += idx > 0 ? `, "${propName}"` : `"${propName}"`;
+      templates += idx > 0 ? `, $${idx + 1}` : `$${idx + 1}`;
+      values.push(reqBody[propName].toString().toLowerCase());
+    });
+    return { columns, templates, values };
   }
 
   async getAll() {

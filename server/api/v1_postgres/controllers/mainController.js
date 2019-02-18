@@ -1,4 +1,5 @@
 import response from '../helpers/controllerResponse';
+import psqlArray from '../helpers/stringToPsqlArray';
 
 class Controller {
   constructor(name = '', model = {}) {
@@ -14,6 +15,10 @@ class Controller {
   }
 
   async create(req, res) {
+    if (req.body.location) {
+      req.body.images = psqlArray(req.body.images);
+      req.body.tags = psqlArray(req.body.tags);
+    }
     try {
       const row = await this.model.create(req.body);
       this.successResponse(res, 201, row);
