@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
 /* eslint no-param-reassign: ["error", { "props": false }] */
-import pool from './dbConnection';
+import dbConnection from './dbConnection';
 import dbErrorMessage from './dbErrorMessage';
 import authHelper from '../../api/v1_postgres/helpers/authHelper';
 
 class DatabaseModel {
   constructor(tableName = '') {
     this._tableName = tableName;
-    this.queryDB = pool.queryDB;
+    this.queryDB = dbConnection.queryDB;
     this.dbErrorMessage = dbErrorMessage;
   }
 
@@ -36,13 +36,13 @@ class DatabaseModel {
       }
       columns += idx > 0 ? `, "${propName}"` : `"${propName}"`;
       templates += idx > 0 ? `, $${idx + 1}` : `$${idx + 1}`;
-      values.push(reqBody[propName].toString().toLowerCase());
+      values.push(reqBody[propName].toString());
     });
     return { columns, templates, values };
   }
 
   async getAll() {
-    const queryString = `SELECT *  FROM ${this._tableName};`;
+    const queryString = `SELECT *  FROM ${this._tableName}_view;`;
     try {
       const { rows } = await this.queryDB(queryString);
       return rows;
@@ -55,7 +55,7 @@ class DatabaseModel {
   async getOne(idString) {
     const id = parseInt(Number(idString), 10);
     if (!id) return null;
-    const queryString = `SELECT * FROM ${this._tableName} WHERE id=$1;`;
+    const queryString = `SELECT * FROM ${this._tableName}_view WHERE id=$1;`;
     try {
       const { rows } = await this.queryDB(queryString, [id]);
       return rows[0];

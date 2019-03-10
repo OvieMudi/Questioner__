@@ -16,15 +16,20 @@ const pool = new Pool({
 });
 
 export { DB_URL };
-export default {
+
+const dbConnection = {
   queryDB(queryString = '', params = []) {
     return new Promise((resolve, reject) => {
-      pool.query(queryString, params)
+      pool
+        .query(queryString, params)
         .then((res) => {
           resolve(res);
-        }).catch((err) => {
+        })
+        .catch((err) => {
           reject(err);
         });
     });
   },
 };
+
+export default dbConnection;

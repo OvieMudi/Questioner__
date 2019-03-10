@@ -17,7 +17,7 @@ const database = {
     });
 
     const queryCommand = `
-    DROP TABLE IF EXISTS users, meetups, questions, rsvps;
+    DROP TABLE IF EXISTS users, meetups, questions, rsvps CASCADE;
 
     CREATE TABLE IF NOT EXISTS
       users(
@@ -63,9 +63,29 @@ const database = {
         "meetup" INT REFERENCES meetups (id) ON DELETE CASCADE,
         "user" INT REFERENCES users (id) ON DELETE CASCADE,
         "response" VARCHAR(8) NOT NULL
-      );`;
+      );
+      
+      CREATE VIEW users_view 
+        AS
+        SELECT  "id", "firstname", "lastname", "othername", "email",
+          "username", "phoneNumber", "registered", "isAdmin"
+        FROM users;
 
-    await this.pool.query(queryCommand)
+      CREATE VIEW meetups_view 
+        AS
+        SELECT  * FROM meetups;
+
+      CREATE VIEW questions_view 
+        AS
+        SELECT  * FROM questions;
+
+      CREATE VIEW rsvps_view 
+        AS
+        SELECT  * FROM rsvps;
+      `;
+
+    await this.pool
+      .query(queryCommand)
       .then((res) => {
         console.log(res);
       })
@@ -109,7 +129,8 @@ const database = {
       );`;
 
     await this.createAllTables();
-    await this.pool.query(queryCommand)
+    await this.pool
+      .query(queryCommand)
       .then((res) => {
         console.log(res);
       })
