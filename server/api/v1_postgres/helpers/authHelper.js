@@ -22,7 +22,8 @@ const authHelper = {
    * @returns {Boolean} True or False
    */
   comparePassword(password = '', hashPassword = '') {
-    return bcrypt.compareSync(password, hashPassword);
+    if (password && hashPassword) return bcrypt.compareSync(password, hashPassword);
+    return false;
   },
 
   /**
@@ -30,12 +31,14 @@ const authHelper = {
    * @param {string} id
    * @returns {string} token
    */
-  generateToken(id, username) {
-    const token = jwt.sign({
-      userId: id,
-      username,
-    }, process.env.SECRET_STRING,
-    { expiresIn: '7h' });
+  generateToken(id) {
+    const token = jwt.sign(
+      {
+        userId: id,
+      },
+      process.env.SECRET_STRING,
+      { expiresIn: '7h' },
+    );
     return token;
   },
 };
