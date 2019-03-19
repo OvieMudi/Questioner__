@@ -144,8 +144,9 @@ const validator = {
     let questionObject;
     if (patchRoute) {
       questionObject = questionParams;
-    } else {
+    } else { // post route
       questionObject = {
+        meetup: joi.string().regex(/^[1-9]+\d*$/).required(),
         title: questionParams.title.required(),
         body: questionParams.body.required(),
       };

@@ -8,6 +8,9 @@ class UsersController extends MainController {
 
   async update(req, res) {
     try {
+      if (req.params.id !== req.user.id) {
+        return this.errorResponse(res, 400, 'unauthorized operation');
+      }
       const row = await this.model.updateUser(req.user.id, req.body);
       if (!row) return this.errorResponse(res, 404, 'Please login/register first');
       return this.successResponse(res, 200, row);
@@ -18,7 +21,8 @@ class UsersController extends MainController {
 
   async delete(req, res) {
     try {
-      const deleted = await this.model.delete(req.user.id);
+      if (req.params.id !== req.user.id) return this.errorResponse(res, 400, 'unauthorized operation');
+      const deleted = await this.model.delete(req.params.id);
       if (!deleted) return this.errorResponse(res, 404, `${this.name} does not exist`);
       return this.successResponse(res, 200, `${this.name} deleted`);
     } catch (err) {

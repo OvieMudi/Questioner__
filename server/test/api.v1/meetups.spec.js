@@ -6,19 +6,40 @@ const { expect } = chai;
 chai.use(chaiHttp);
 
 const data = {
-  location: 'Outer Rim',
+  location: 'Lokoja, Kwara State',
   images: 'http://image1.jpg, http://image2.jpg',
   topic: 'The New Threat ',
   happeningOn: '2019/01/07-11:00',
-  tags: 'jedi, sith',
+  tags: 'politics, religion',
+};
+const credentials = {
+  username: 'bobba',
+  password: 'StrongPassword',
 };
 
 let id;
+let jwtToken;
+
+before((done) => {
+  chai
+    .request(server)
+    .post('/api/v1/auth/signin')
+    .type('form')
+    .send({
+      username: credentials.username,
+      password: credentials.password,
+    })
+    .end((err, res) => {
+      jwtToken = res.body.data.token;
+      done();
+    });
+});
 
 
 describe('POST /api/v1/meetups', () => {
   it('should create a new Meetup in db', () => chai.request(server)
     .post('/api/v1/meetups')
+    .set('x-access-token', jwtToken)
     .type('form')
     .send(data)
     .then((res) => {
@@ -38,6 +59,7 @@ describe('POST /api/v1/meetups', () => {
   noLocation.location = '';
   it('should return error if location is missing', () => chai.request(server)
     .post('/api/v1/meetups')
+    .set('x-access-token', jwtToken)
     .type('form')
     .send(noLocation)
     .then((res) => {
@@ -80,6 +102,7 @@ describe('GET /api/v1/meetups/?scope=upcoming', () => {
 describe('GET /api/v1/meetups:id', () => {
   it('should get a meetup from db', () => chai.request(server)
     .get(`/api/v1/meetups/${id}`)
+    .set('x-access-token', jwtToken)
     .then((res) => {
       const body = res.body.data;
       expect(res).to.have.status(200);
@@ -104,6 +127,7 @@ describe('PATCH /api/v1/meetups/:id', () => {
     .patch(`/api/v1/meetups/${id}`)
     .type('form')
     .send({ location: 'Christophsys' })
+    .set('x-access-token', jwtToken)
     .then((res) => {
       const body = res.body.data;
       expect(res).to.have.status(200);
@@ -115,27 +139,36 @@ describe('PATCH /api/v1/meetups/:id', () => {
       expect(body).to.have.property('tags');
     }));
 
-  it('should return error for invalid/deleted data', () => chai.request(server)
-    .patch('/api/v1/meetups/INVALID_ID')
-    .send({})
-    .then((res) => {
-      expect(res).to.have.status(404);
-      expect(res.body).to.have.property('error');
-    }));
+  it('should return error for invalid/deleted data', () => {
+    chai.request(server)
+      .patch('/api/v1/meetups/INVALID_ID')
+      .send({})
+      .set('x-access-token', jwtToken)
+      .then((res) => {
+        expect(res).to.have.status(404);
+        expect(res.body).to.have.property('error');
+      });
+  });
 });
 
 describe('DELETE /api/v1/meetups/:id', () => {
-  it('should delete an existing Meetup in db', () => chai.request(server)
-    .delete(`/api/v1/meetups/${id}`)
-    .then((res) => {
-      expect(res).to.have.status(200);
-      expect(res.body.data).to.eql('meetup deleted');
-    }));
+  it('should delete an existing Meetup in db', () => {
+    chai.request(server)
+      .delete(`/api/v1/meetups/${id}`)
+      .set('x-access-token', jwtToken)
+      .then((res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.data).to.eql('meetup deleted');
+      });
+  });
 
-  it('should return error for invalid/deleted data', () => chai.request(server)
-    .delete(`/api/v1/meetups/${id}`)
-    .then((res) => {
-      expect(res).to.have.status(404);
-      expect(res.body).to.have.property('error');
-    }));
+  it('should return error for invalid/deleted data', () => {
+    chai.request(server)
+      .delete(`/api/v1/meetups/${id}`)
+      .set('x-access-token', jwtToken)
+      .end((err, res) => {
+        expect(res).to.have.status(404);
+        expect(res.body).to.have.property('error');
+      });
+  });
 });

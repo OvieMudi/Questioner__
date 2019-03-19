@@ -4,15 +4,18 @@ import usersModel from '../models/usersModel';
 
 const auth = {
   async verifyToken(req, res, next) {
-    const token = req.headers['x-access-token'];
+    let token = req.headers['x-access-token'] || req.headers.authorization || '';
+    if (token.startsWith('Bearer')) token = token.slice(7, token.length);
     if (!token) return controllerResponse.errorResponse(res, 400, 'token not provided');
     try {
-      const verified = await jwt.verify(token, process.env.SECRET_STRING);
-      const user = await usersModel.getOne(verified.userId);
-      if (!user) return controllerResponse.errorResponse(res, 400, 'invalid/expired token');
-      req.user = { id: verified.userId };
+      const decoded = await jwt.verify(token, process.env.SECRET_STRING);
+      const user = await usersModel.getOne(decoded.userId);
+      if (!user) return controllerResponse.errorResponse(res, 400, 'user not found');
+      req.user = { id: decoded.userId };
       return next();
     } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log(err);
       return controllerResponse.errorResponse(res, 400, err.message);
     }
   },

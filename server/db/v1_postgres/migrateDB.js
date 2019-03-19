@@ -2,6 +2,7 @@
 import { Pool } from 'pg';
 import { config } from 'dotenv';
 import { DB_URL } from './dbConnection';
+import authHelper from '../../api/v1_postgres/helpers/authHelper';
 
 config();
 
@@ -98,11 +99,13 @@ const database = {
     const queryCommand = `
       INSERT INTO users(
       firstname, lastname, othername, email, "phoneNumber", username, password, "isAdmin"
-      ) VALUES('Anakin', 'Skywalker', 'Ani', 'anakinskywalker@republic.com', 123123123, 'Skywalkerr', 'strongpassword', true
-      );
+      ) VALUES('Anakin', 'Skywalker', 'Ani', 'anakinskywalker@republic.com', 123123123, 'Skywalkerr',
+        '${authHelper.hashPassword('StrongPassword')}', true
+      ); 
       INSERT INTO users(
       firstname, lastname, othername, email, "phoneNumber", username, password
-        ) VALUES('Bobba', 'Fet', 'Lucky', 'bobbafet@republic.com', '122122122', 'bobba', 'randompassword'
+        ) VALUES('Bobba', 'Fet', 'Lucky', 'bobbafet@republic.com', '122122122', 'bobba',
+          '${authHelper.hashPassword('StrongPassword')}'
       );
       
       INSERT INTO meetups(

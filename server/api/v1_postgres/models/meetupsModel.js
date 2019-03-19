@@ -23,9 +23,11 @@ class MeetupsModel extends DatabaseModel {
       WHERE id=$6
       RETURNING *;`;
 
-    const images = reqBody.images ? psqlArray(reqBody.images.split(/,\s/))
+    const images = reqBody.images
+      ? psqlArray(reqBody.images.split(/,\s/))
       : psqlArray(foundMeetup.images.join());
-    const tags = reqBody.tags ? psqlArray(reqBody.tags.split(/,\s/))
+    const tags = reqBody.tags
+      ? psqlArray(reqBody.tags.split(/,\s/))
       : psqlArray(foundMeetup.tags.join());
 
     const values = [
@@ -54,7 +56,7 @@ class MeetupsModel extends DatabaseModel {
     ) VALUES(
       $1, $2, $3
     ) RETURNING *;`;
-    const values = [meetupIdString, 1, req.body.response];
+    const values = [meetupIdString, req.user.id, req.body.response];
     try {
       const { rows } = await this.queryDB(queryString, values);
       const meetup = await this.getOne(meetupIdString);
@@ -70,8 +72,8 @@ class MeetupsModel extends DatabaseModel {
     }
   }
 
-  async getAllRsvps() {
-    const queryString = 'SELECT * FROM rsvps;';
+  async getAllRsvps(meetupId = '') {
+    const queryString = `SELECT * FROM rsvps WHERE meetup = ${meetupId};`;
     try {
       const { rows } = await this.queryDB(queryString);
       return rows;

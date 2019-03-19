@@ -37,7 +37,7 @@ class MeetupsController extends MainController {
 
   async getAllRsvps(req, res) {
     try {
-      const rows = await this.model.getAllRsvps();
+      const rows = await this.model.getAllRsvps(req.params.id);
       this.successResponse(res, 200, rows);
     } catch (err) {
       this.errorResponse(res, 500, err.message);
@@ -45,6 +45,5 @@ class MeetupsController extends MainController {
   }
 }
 const meetupsController = new MeetupsController('meetup', meetupsModel);
-
 
 export default meetupsController;
