@@ -20,20 +20,18 @@ const credentials = {
 let id;
 let jwtToken;
 
-before((done) => {
-  chai
-    .request(server)
-    .post('/api/v1/auth/signin')
-    .type('form')
-    .send({
-      username: credentials.username,
-      password: credentials.password,
-    })
-    .end((err, res) => {
-      jwtToken = res.body.data.token;
-      done();
-    });
-});
+before(() => chai
+  .request(server)
+  .post('/api/v1/auth/signin')
+  .type('form')
+  .send({
+    username: credentials.username,
+    password: credentials.password,
+  })
+  .then((res) => {
+    console.log(res.body);
+    jwtToken = res.body.data.token;
+  }));
 
 
 describe('POST /api/v1/meetups', () => {
