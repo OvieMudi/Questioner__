@@ -50,10 +50,10 @@ describe('GET /api/v1/users', () => {
 });
 
 describe('GET /api/v1/users/:id', () => {
-  it('should get information of a User from db', () => {
+  it('should get information of a User from db', (done) => {
     chai
       .request(server)
-      .get(`/api/v1/users/${id.toString()}`)
+      .get(`/api/v1/users/${id}`)
       .end((err, res) => {
         const body = res.body.data;
         expect(res).to.have.status(200);
@@ -66,9 +66,10 @@ describe('GET /api/v1/users/:id', () => {
         expect(body).to.have.property('username');
         expect(body).to.have.property('registered');
         expect(body).to.have.property('isAdmin');
+        done(err);
       });
   });
-  it('should not find user with invalid id', () => {
+  it('should not find user with invalid id', (done) => {
     chai
       .request(server)
       .get('/api/v1/users/_INVALID_ID_')
@@ -77,12 +78,13 @@ describe('GET /api/v1/users/:id', () => {
         expect(res.body)
           .to.have.property('error')
           .eql('user does not exist');
+        done(err);
       });
   });
 });
 
 describe('PATCH /api/v1/users/:id', () => {
-  it('should update a User record in db', () => {
+  it('should update a User record in db', (done) => {
     chai
       .request(server)
       .patch(`/api/v1/users/${id}`)
@@ -103,12 +105,13 @@ describe('PATCH /api/v1/users/:id', () => {
         expect(body).to.have.property('username');
         expect(body).to.have.property('registered');
         expect(body).to.have.property('isAdmin');
+        done(err);
       });
   });
 });
 
 describe('DELETE /api/v1/users/:id', () => {
-  it('should delete User information', () => {
+  it('should delete User information', (done) => {
     chai
       .request(server)
       .delete(`/api/v1/users/${id}`)
@@ -116,15 +119,17 @@ describe('DELETE /api/v1/users/:id', () => {
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body.data).to.eql('user deleted');
+        done(err);
       });
   });
-  it('should not find deleted data', () => {
+  it('should not find deleted data', (done) => {
     chai
       .request(server)
       .delete(`/api/v1/users/${id}`)
       .set('x-access-token', jwtToken)
       .end((err, res) => {
-        expect(res).to.have.status(404);
+        expect(res).to.have.status(400);
+        done(err);
       });
   });
 });

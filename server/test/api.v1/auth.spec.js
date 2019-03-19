@@ -49,7 +49,7 @@ describe('POST /api/v1/auth/signup', () => {
         expect(user)
           .to.have.property('isAdmin')
           .that.is.a('boolean');
-        done();
+        done(err);
       });
   });
 });
@@ -92,7 +92,7 @@ describe('POST /api/v1/auth/signin', () => {
         expect(user)
           .to.have.property('isAdmin')
           .that.is.a('boolean');
-        done();
+        done(err);
       });
   });
 });

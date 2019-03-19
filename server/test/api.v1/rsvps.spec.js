@@ -26,7 +26,7 @@ before((done) => {
 });
 
 describe('POST /api/v1/meetups/:id/rsvps', () => {
-  it('should create a meetup rsvp status', () => {
+  it('should create a meetup rsvp status', (done) => {
     chai
       .request(server)
       .post('/api/v1/meetups/2/rsvps')
@@ -38,12 +38,13 @@ describe('POST /api/v1/meetups/:id/rsvps', () => {
         expect(res.body.data).to.have.property('meetup');
         expect(res.body.data).to.have.property('topic');
         expect(res.body.data).to.have.property('status');
+        done(err);
       });
   });
 });
 
 describe('GET /api/v1/meetups/:id/rsvps', () => {
-  it('should get a meetup rsvp status', () => {
+  it('should get a meetup rsvp status', (done) => {
     chai
       .request(server)
       .get('/api/v1/meetups/2/rsvps')
@@ -51,6 +52,7 @@ describe('GET /api/v1/meetups/:id/rsvps', () => {
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body.data[0]).to.have.property('meetup');
+        done(err);
       });
   });
 });
