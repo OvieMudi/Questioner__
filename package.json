@@ -8,7 +8,7 @@
     "start": "babel-node ./app.js",
     "test": "cross-env NODE_ENV='test' npm run migrate&& cross-env NODE_ENV='test' mocha ./server/test --compilers js:@babel/register --recursive --timeout 3000 --exit",
     "test-local": "cross-env NODE_ENV='test' npm run migrate&& cross-env NODE_ENV='test' mocha --compilers js:@babel/register --timeout 3000 --exit",
-    "test-coverage": "cross-env NODE_ENV='test' nyc mocha ./server/test --recursive --exit",
+    "test-coverage": "nyc npm run test",
     "report-coverage": "nyc report --reporter=text-lcov | coveralls",
     "migrate": "babel-node ./server/db/v1_postgres/migrateDB",
     "heroku-postbuild": "npm run migrate"
