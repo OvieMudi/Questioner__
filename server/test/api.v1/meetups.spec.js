@@ -29,7 +29,6 @@ before(async () => {
       username: credentials.username,
       password: credentials.password,
     });
-  console.log(res.body);
   jwtToken = res.body.data.token;
 });
 
