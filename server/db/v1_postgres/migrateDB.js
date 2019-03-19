@@ -2,6 +2,7 @@
 import { Pool } from 'pg';
 import { config } from 'dotenv';
 import { DB_URL } from './dbConnection';
+import authHelper from '../../api/v1_postgres/helpers/authHelper';
 
 config();
 
@@ -17,10 +18,7 @@ const database = {
     });
 
     const queryCommand = `
-    DROP TABLE IF EXISTS users;
-    DROP TABLE IF EXISTS meetups;
-    DROP TABLE IF EXISTS questions;
-    DROP TABLE IF EXISTS rsvps;
+    DROP TABLE IF EXISTS users, meetups, questions, rsvps CASCADE;
 
     CREATE TABLE IF NOT EXISTS
       users(
@@ -32,6 +30,7 @@ const database = {
         "username" VARCHAR(128) UNIQUE NOT NULL,
         "phoneNumber" VARCHAR(128) UNIQUE NOT NULL,
         "registered" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
+        "password" VARCHAR(128) NOT NULL,
         "isAdmin" BOOLEAN DEFAULT false NOT NULL
       );
     
@@ -48,9 +47,9 @@ const database = {
 
       CREATE TABLE IF NOT EXISTS questions (
         "id" SERIAL PRIMARY KEY,
-        "createdBy" INT NOT NULL DEFAULT 1,
-        "meetup" INT NOT NULL DEFAULT 2,
-        "authorName" varchar(60) NOT NULL DEFAULT 'skywalker',
+        "createdBy" INT REFERENCES users (id) ON DELETE CASCADE,
+        "meetup" INT REFERENCES meetups (id) ON DELETE CASCADE,
+        "authorName" varchar(60) NOT NULL,
         "title" varchar(100) NOT NULL,
         "body" varchar(1000) NOT NULL,
         "votes" INT DEFAULT 0,
@@ -62,12 +61,32 @@ const database = {
 
       CREATE TABLE IF NOT EXISTS rsvps(
         "id" SERIAL PRIMARY KEY,
-        "meetup" INT NOT NULL,
-        "user" INT NOT NULL,
-        "response" VARCHAR(6) NOT NULL
-      );`;
+        "meetup" INT REFERENCES meetups (id) ON DELETE CASCADE,
+        "user" INT REFERENCES users (id) ON DELETE CASCADE,
+        "response" VARCHAR(8) NOT NULL
+      );
+      
+      CREATE VIEW users_view 
+        AS
+        SELECT  "id", "firstname", "lastname", "othername", "email",
+          "username", "phoneNumber", "registered", "isAdmin"
+        FROM users;
 
-    await this.pool.query(queryCommand)
+      CREATE VIEW meetups_view 
+        AS
+        SELECT  * FROM meetups;
+
+      CREATE VIEW questions_view 
+        AS
+        SELECT  * FROM questions;
+
+      CREATE VIEW rsvps_view 
+        AS
+        SELECT  * FROM rsvps;
+      `;
+
+    await this.pool
+      .query(queryCommand)
       .then((res) => {
         console.log(res);
       })
@@ -79,12 +98,14 @@ const database = {
   async seedAllTables() {
     const queryCommand = `
       INSERT INTO users(
-      firstname, lastname, othername, email, "phoneNumber", username, "isAdmin"
-      ) VALUES('Anakin', 'Skywalker', 'Ani', 'anakinskywalker@republic.com', 123123123, 'Skywalkerr', true
-      );
+      firstname, lastname, othername, email, "phoneNumber", username, password, "isAdmin"
+      ) VALUES('Anakin', 'Skywalker', 'Ani', 'anakinskywalker@republic.com', 123123123, 'Skywalkerr',
+        '${authHelper.hashPassword('StrongPassword')}', true
+      ); 
       INSERT INTO users(
-      firstname, lastname, othername, email, "phoneNumber", username
-        ) VALUES('Bobba', 'Fet', 'Lucky', 'bobbafet@republic.com', '122122122', 'bobba'
+      firstname, lastname, othername, email, "phoneNumber", username, password
+        ) VALUES('Bobba', 'Fet', 'Lucky', 'bobbafet@republic.com', '122122122', 'bobba',
+          '${authHelper.hashPassword('StrongPassword')}'
       );
       
       INSERT INTO meetups(
@@ -111,7 +132,8 @@ const database = {
       );`;
 
     await this.createAllTables();
-    await this.pool.query(queryCommand)
+    await this.pool
+      .query(queryCommand)
       .then((res) => {
         console.log(res);
       })

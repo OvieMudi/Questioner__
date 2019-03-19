@@ -9,9 +9,12 @@ import app from 'express';
 import usersRoute from './v1_postgres/routes/users';
 import meetupsRoute from './v1_postgres/routes/meetups';
 import questionsRoute from './v1_postgres/routes/questions';
+import authRoute from './v1_postgres/routes/auth';
+
 
 const Router = app.Router();
 
+Router.use('/auth', authRoute);
 Router.use('/users', usersRoute);
 Router.use('/meetups', meetupsRoute);
 Router.use('/questions', questionsRoute);

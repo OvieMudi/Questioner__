@@ -6,7 +6,43 @@ class UsersModel extends Database {
     super(tableName);
   }
 
-  async update(idString, reqBody) {
+  async create(reqBody = {}) {
+    const { columns, templates, values } = this.createEntries(reqBody);
+    const createUserQuery = `INSERT INTO users(${columns})
+      VALUES(${templates})
+      RETURNING *;
+    `;
+    try {
+      const { rows } = await this.queryDB(createUserQuery, values);
+      const row = rows[0];
+      return {
+        id: row.id,
+        firstname: row.firstname,
+        lastname: row.lastname,
+        othername: row.othername,
+        email: row.email,
+        username: row.username,
+        phoneNumber: row.phoneNumber,
+        registered: row.registered,
+        isAdmin: row.isAdmin,
+      };
+    } catch (err) {
+      throw this.dbErrorMessage(err);
+    }
+  }
+
+  async getOneUser(username = '') {
+    const queryString = `SELECT * FROM ${this._tableName} WHERE username='${username}';`;
+    try {
+      const { rows } = await this.queryDB(queryString);
+      return rows[0];
+    } catch (err) {
+      console.log(err);
+      throw this.dbErrorMessage();
+    }
+  }
+
+  async updateUser(idString, reqBody) {
     const foundUser = await this.getOne(idString);
     if (!foundUser) return null;
     const queryString = `UPDATE users
@@ -17,8 +53,10 @@ class UsersModel extends Database {
     const values = this.createValues(reqBody, foundUser, idString);
 
     try {
-      const { rows } = await this.queryDB(queryString, values.map(prop => prop
-        .toString().toLowerCase()));
+      const { rows } = await this.queryDB(
+        queryString,
+        values.map(prop => prop.toString().toLowerCase()),
+      );
       return rows[0];
     } catch (err) {
       console.error(err);
