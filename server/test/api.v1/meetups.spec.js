@@ -123,8 +123,8 @@ describe('PATCH /api/v1/meetups/:id', () => {
   it('should update an existing Meetup in db', () => chai.request(server)
     .patch(`/api/v1/meetups/${id}`)
     .type('form')
-    .send({ location: 'Christophsys' })
     .set('x-access-token', jwtToken)
+    .send({ location: 'Christophsys' })
     .then((res) => {
       const body = res.body.data;
       expect(res).to.have.status(200);
@@ -139,8 +139,8 @@ describe('PATCH /api/v1/meetups/:id', () => {
   it('should return error for invalid/deleted data', () => {
     chai.request(server)
       .patch('/api/v1/meetups/INVALID_ID')
-      .send({})
       .set('x-access-token', jwtToken)
+      .send({})
       .then((res) => {
         expect(res).to.have.status(404);
         expect(res.body).to.have.property('error');
